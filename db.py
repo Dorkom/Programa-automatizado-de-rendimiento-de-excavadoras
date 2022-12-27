@@ -12,6 +12,11 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
+    def smallfetch(self):
+        self.cur.execute("SELECT id, excavadora, cuchara, productividad, rendimiento FROM maquina")
+        rows = self.cur.fetchall()
+        return rows
+
     def fetchtiempocarga(self, id):
         self.cur.execute("SELECT tiempocarga FROM maquina WHERE id = ?", (id,))
         rows = self.cur.fetchone()[0]
@@ -47,4 +52,4 @@ class Database:
 
 # db = Database('maq.db')
 
-# db.insert("excavadora", "excavacion", "balanceo", "carga", "tiempocarga", "cuchara", "capacidadcuchara", "eficiencia", "capacidadneta", "alto", "ancho", "largo", "volumen", "sobreexcavacion", "tiempoalquiler", "numerocicloshora", "productividad", "rendimiento")
+# db.insert("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1")
