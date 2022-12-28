@@ -28,17 +28,33 @@ global flag1
 flag1 = 1
 global flag_ingresar_excavadora
 flag_ingresar_excavadora = 0
+global flag_mostrar_detalles
+flag_mostrar_detalles = 0
+global flag_eliminar
+flag_eliminar = 0
 print(thisid)
 
+# crear un frame y poner la tabla ahi, luego borrar el frame
+table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
+table_frame.grid(row=1, sticky="ns")
+table_frame.grid_remove()
+small_table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
+small_table_frame.grid(row=1, sticky="ns")
+small_table_frame.grid_remove()
+table_frame_buttons = Frame(mainwin, width = 1000, height = 200, padx = 3)
+
 def small_populate_list():
-    marco1_label = Label(mainwin, text='Excavadora', font=my_fontdisplay)
+    # small_table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
+    # small_table_frame.grid(row=1, sticky="ns")
+    small_table_frame.grid()
+    marco1_label = Label(small_table_frame, text='Excavadora', font=my_fontdisplay)
     marco1_label.grid(row=1, column=1, sticky=W)
-    marco1_label = Label(mainwin, text='Cuchara', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=2, sticky=W)
-    marco1_label = Label(mainwin, text='Productividad', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=3, sticky=W)
-    marco1_label = Label(mainwin, text='Rendimiento', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=4, sticky=W)
+    marco2_label = Label(small_table_frame, text='Cuchara', font=my_fontdisplay)
+    marco2_label.grid(row=1, column=2, sticky=W)
+    marco3_label = Label(small_table_frame, text='Productividad', font=my_fontdisplay)
+    marco3_label.grid(row=1, column=3, sticky=W)
+    marco4_label = Label(small_table_frame, text='Rendimiento', font=my_fontdisplay)
+    marco4_label.grid(row=1, column=4, sticky=W)
     i = 2
     for row in db.smallfetch():
         try:
@@ -46,7 +62,7 @@ def small_populate_list():
             print('populate list')
             print(thisid)
             for j in range(len(row)):
-                e = Text(mainwin, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
+                e = Text(small_table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
                 e.grid(row=i, column=j)
                 # if n == 0:
                 #     e.config(width=4)
@@ -65,43 +81,46 @@ def small_populate_list():
             pass
 
 def populate_list():
+    # table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
+    # table_frame.grid(row=1, sticky="ns")
     # excavadora, excavacion, balanceo, carga, tiempocarga, cuchara, eficiencia, capacidadcuchara, capacidadneta, alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
-    marco1_label = Label(mainwin, text='Excavadora', font=my_fontdisplay)
+    table_frame.grid()
+    marco1_label = Label(table_frame, text='Excavadora', font=my_fontdisplay)
     marco1_label.grid(row=1, column=1, sticky=W)
-    marco1_label = Label(mainwin, text='Excavacion', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=2, sticky=W)
-    marco1_label = Label(mainwin, text='Balanceo', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=3, sticky=W)
-    marco1_label = Label(mainwin, text='Carga', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=4, sticky=W)
-    marco1_label = Label(mainwin, text='Tiempo de carga', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=5, sticky=W)
-    marco1_label = Label(mainwin, text='Cuchara', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=6, sticky=W)
-    marco1_label = Label(mainwin, text='Eficiencia', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=7, sticky=W)
-    marco1_label = Label(mainwin, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
-    marco1_label.grid(row=1, column=8, sticky=W)
-    marco1_label = Label(mainwin, text='Capacidad neta', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=9, sticky=W)
-    marco1_label = Label(mainwin, text='Alto', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=10, sticky=W)
-    marco1_label = Label(mainwin, text='Ancho', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=11, sticky=W)
-    marco1_label = Label(mainwin, text='Largo', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=12, sticky=W)
-    marco1_label = Label(mainwin, text='Volumen', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=13, sticky=W)
-    marco1_label = Label(mainwin, text='Sobreexcavacion', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=14, sticky=W)
-    marco1_label = Label(mainwin, text='Tiempo de alquiler', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=15, sticky=W)
-    marco1_label = Label(mainwin, text='Numero de ciclos por hora', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=16, sticky=W)
-    marco1_label = Label(mainwin, text='Productividad', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=17, sticky=W)
-    marco1_label = Label(mainwin, text='Rendimiento', font=my_fontdisplay)
-    marco1_label.grid(row=1, column=18, sticky=W)
+    marco2_label = Label(table_frame, text='Excavacion', font=my_fontdisplay)
+    marco2_label.grid(row=1, column=2, sticky=W)
+    marco3_label = Label(table_frame, text='Balanceo', font=my_fontdisplay)
+    marco3_label.grid(row=1, column=3, sticky=W)
+    marco4_label = Label(table_frame, text='Carga', font=my_fontdisplay)
+    marco4_label.grid(row=1, column=4, sticky=W)
+    marco5_label = Label(table_frame, text='Tiempo de carga', font=my_fontdisplay)
+    marco5_label.grid(row=1, column=5, sticky=W)
+    marco6_label = Label(table_frame, text='Cuchara', font=my_fontdisplay)
+    marco6_label.grid(row=1, column=6, sticky=W)
+    marco7_label = Label(table_frame, text='Eficiencia', font=my_fontdisplay)
+    marco7_label.grid(row=1, column=7, sticky=W)
+    marco8_label = Label(table_frame, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
+    marco8_label.grid(row=1, column=8, sticky=W)
+    marco9_label = Label(table_frame, text='Capacidad neta', font=my_fontdisplay)
+    marco9_label.grid(row=1, column=9, sticky=W)
+    marco10_label = Label(table_frame, text='Alto', font=my_fontdisplay)
+    marco10_label.grid(row=1, column=10, sticky=W)
+    marco11_label = Label(table_frame, text='Ancho', font=my_fontdisplay)
+    marco11_label.grid(row=1, column=11, sticky=W)
+    marco12_label = Label(table_frame, text='Largo', font=my_fontdisplay)
+    marco12_label.grid(row=1, column=12, sticky=W)
+    marco13_label = Label(table_frame, text='Volumen', font=my_fontdisplay)
+    marco13_label.grid(row=1, column=13, sticky=W)
+    marco14_label = Label(table_frame, text='Sobreexcavacion', font=my_fontdisplay)
+    marco14_label.grid(row=1, column=14, sticky=W)
+    marco15_label = Label(table_frame, text='Tiempo de alquiler', font=my_fontdisplay)
+    marco15_label.grid(row=1, column=15, sticky=W)
+    marco16_label = Label(table_frame, text='Numero de ciclos por hora', font=my_fontdisplay)
+    marco16_label.grid(row=1, column=16, sticky=W)
+    marco17_label = Label(table_frame, text='Productividad', font=my_fontdisplay)
+    marco17_label.grid(row=1, column=17, sticky=W)
+    marco18_label = Label(table_frame, text='Rendimiento', font=my_fontdisplay)
+    marco18_label.grid(row=1, column=18, sticky=W)
     i = 2
     for row in db.fetch():
         try:
@@ -109,7 +128,7 @@ def populate_list():
             print('populate list')
             print(thisid)
             for j in range(len(row)):
-                e = Text(mainwin, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
+                e = Text(table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
                 e.grid(row=i, column=j)
                 # if n == 0 or n == 1 or n == 6:
                 if n == 0:
@@ -124,10 +143,15 @@ def populate_list():
                 # e.insert(END, row[j])
                 n = n + 1
             i=i+1
-            vacio_label = Label(mainwin, text='', font=my_font, pady=10, padx=10)
+            vacio_label = Label(table_frame, text='', font=my_font, pady=10, padx=10)
             vacio_label.grid(row=i, column=0)
         except IndexError:
             pass
+
+# esto corresponde a treeview una nueva forma de mostrar los datos
+# def new_populate_list():
+#     tree=ttk.Treeview(mainwin)
+#     tree['show'] = 'headings'
 
 def actualizar_lista():
     global thisid
@@ -135,7 +159,10 @@ def actualizar_lista():
         thisid = 0
         for row in db.fetch():
             thisid = thisid + 1
-        populate_list()
+        if flag_mostrar_detalles==0:
+            small_populate_list()
+        else:
+            populate_list()
 
 def escoger_excavadora():
     mainwin.withdraw()
@@ -482,30 +509,50 @@ def escoger_excavadora():
     selwin.configure(bg='white')
     selwin.mainloop()
 
-# def eliminar_id():
-#     global thisid
-#     db.remove(thisid)
-#     actualizar_lista()
+def crear_nuevo_table():
+    small_table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
+    small_table_frame.grid(row=1, sticky="ns")
+    small_table_frame.grid_remove()
 
-iniciar_btn = Button(mainwin, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
+def eliminar_id():
+    db.remove(thisid)
+    crear_nuevo_table()
+    actualizar_lista()
+    # global flag_eliminar
+    # flag_eliminar=1
+    # global thisid
+    # db.remove(thisid)
+    # actualizar_lista()
+    
+
+def mostrar_detalles():
+    global flag_mostrar_detalles
+    if flag_mostrar_detalles == 0:
+        small_table_frame.grid_remove()
+        populate_list()
+        flag_mostrar_detalles = 1
+    else:
+        table_frame.grid_remove()
+        small_populate_list()
+        flag_mostrar_detalles = 0
+
+def borrar():
+    small_table_frame.grid_remove()
+
+table_frame_buttons.grid(row=0, sticky="ns")
+iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
 iniciar_btn.grid(row=0, column=0, pady=10, padx=10)
-# detalles_btn = Button(mainwin, text='Detalles', width=7, command=populate_list, font=my_fonts)
-# detalles_btn.grid(row=0, column=1, pady=10, padx=10)
+detalles_btn = Button(table_frame_buttons, text='Detalles', width=7, command=mostrar_detalles, font=my_fonts)
+detalles_btn.grid(row=0, column=1, pady=10, padx=10)
 
-# eliminar_btn = Button(mainwin, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
-# eliminar_btn.grid(row=0, column=2, pady=10, padx=10)
+eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
+eliminar_btn.grid(row=0, column=2, pady=10, padx=10)
+eliminar_btn = Button(table_frame_buttons, text='borrar', width=7, command=borrar, font=my_fonts)
+eliminar_btn.grid(row=0, column=3, pady=10, padx=10)
 # eliminar_text = StringVar(mainwin,'','eliminar')
 # eliminar_entry = Entry(mainwin, textvariable=eliminar_text, width=4, font=my_font)
 # eliminar_entry.grid(row=0, column=3)
 
-def actualizar_lista():
-    global thisid
-    if flag1 != 0:
-        thisid = 0
-        for row in db.fetch():
-            thisid = thisid + 1
-        populate_list()
-
-populate_list()
+small_populate_list()
 
 mainwin.mainloop()
