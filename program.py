@@ -111,9 +111,15 @@ def populate_list():
             for j in range(len(row)):
                 e = Text(mainwin, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
                 e.grid(row=i, column=j)
-                if n == 0 or n == 1 or n == 6:
+                # if n == 0 or n == 1 or n == 6:
+                if n == 0:
+                    e.config(width=4)
+                    e.insert(END, row[j])
+                elif n == 1 or n == 6:
+                    e.config(width=13)
                     e.insert(END, row[j])
                 else:
+                    e.config(width=10)
                     e.insert(END, round(float(str(row[j])), 2))
                 # e.insert(END, row[j])
                 n = n + 1
@@ -129,7 +135,7 @@ def actualizar_lista():
         thisid = 0
         for row in db.fetch():
             thisid = thisid + 1
-        small_populate_list()
+        populate_list()
 
 def escoger_excavadora():
     mainwin.withdraw()
@@ -476,21 +482,21 @@ def escoger_excavadora():
     selwin.configure(bg='white')
     selwin.mainloop()
 
-def eliminar_id():
-    db.remove(eliminar_text.get())
-    mainwin.update()
-    actualizar_lista()
+# def eliminar_id():
+#     global thisid
+#     db.remove(thisid)
+#     actualizar_lista()
 
 iniciar_btn = Button(mainwin, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
 iniciar_btn.grid(row=0, column=0, pady=10, padx=10)
-detalles_btn = Button(mainwin, text='Detalles', width=7, command=populate_list, font=my_fonts)
-detalles_btn.grid(row=0, column=1, pady=10, padx=10)
+# detalles_btn = Button(mainwin, text='Detalles', width=7, command=populate_list, font=my_fonts)
+# detalles_btn.grid(row=0, column=1, pady=10, padx=10)
 
-eliminar_btn = Button(mainwin, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
-eliminar_btn.grid(row=0, column=2, pady=10, padx=10)
-eliminar_text = StringVar(mainwin,'','eliminar')
-eliminar_entry = Entry(mainwin, textvariable=eliminar_text, width=4, font=my_font)
-eliminar_entry.grid(row=0, column=3)
+# eliminar_btn = Button(mainwin, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
+# eliminar_btn.grid(row=0, column=2, pady=10, padx=10)
+# eliminar_text = StringVar(mainwin,'','eliminar')
+# eliminar_entry = Entry(mainwin, textvariable=eliminar_text, width=4, font=my_font)
+# eliminar_entry.grid(row=0, column=3)
 
 def actualizar_lista():
     global thisid
@@ -498,8 +504,8 @@ def actualizar_lista():
         thisid = 0
         for row in db.fetch():
             thisid = thisid + 1
-        small_populate_list()
+        populate_list()
 
-small_populate_list()
+populate_list()
 
 mainwin.mainloop()
