@@ -55,15 +55,14 @@ table_frame.pack(side='bottom')
 
 # ocultar los frames
 # small_table_frame.pack_forget()
-table_frame.pack_forget()
 
 tree = ttk.Treeview(table_frame)
-tree2 = ttk.Treeview(table_frame)
+# tree2 = ttk.Treeview(table_frame)
 
 def small_populate_list():
 
     # small_table_frame.grid()
-    table_frame.pack()
+    
 
     # marco1_label = Label(small_table_frame, text='Excavadora', font=my_fontdisplay)
     # marco1_label.config(bg='white')
@@ -133,119 +132,119 @@ def small_populate_list():
 
     mainwin.update_idletasks()
 
-def populate_list():
+# def populate_list():
     
-    # table_frame.grid()
+#     # table_frame.grid()
 
-    # table_frame.pack()
+#     # table_frame.pack()
 
-    # marco1_label = Label(table_frame, text='Excavadora', font=my_fontdisplay)
-    # marco1_label.config(bg='white')
-    # marco1_label.grid(row=1, column=1, sticky=W)
-    # marco2_label = Label(table_frame, text='Excavacion', font=my_fontdisplay)
-    # marco2_label.config(bg='white')
-    # marco2_label.grid(row=1, column=2, sticky=W)
-    # marco3_label = Label(table_frame, text='Balanceo', font=my_fontdisplay)
-    # marco3_label.config(bg='white')
-    # marco3_label.grid(row=1, column=3, sticky=W)
-    # marco4_label = Label(table_frame, text='Carga', font=my_fontdisplay)
-    # marco4_label.config(bg='white')
-    # marco4_label.grid(row=1, column=4, sticky=W)
-    # marco5_label = Label(table_frame, text='Tiempo de carga', font=my_fontdisplay)
-    # marco5_label.config(bg='white')
-    # marco5_label.grid(row=1, column=5, sticky=W)
-    # marco6_label = Label(table_frame, text='Cuchara', font=my_fontdisplay)
-    # marco6_label.config(bg='white')
-    # marco6_label.grid(row=1, column=6, sticky=W)
-    # marco7_label = Label(table_frame, text='Eficiencia', font=my_fontdisplay)
-    # marco7_label.config(bg='white')
-    # marco7_label.grid(row=1, column=7, sticky=W)
-    # marco8_label = Label(table_frame, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
-    # marco8_label.config(bg='white')
-    # marco8_label.grid(row=1, column=8, sticky=W)
-    # marco9_label = Label(table_frame, text='Capacidad neta', font=my_fontdisplay)
-    # marco9_label.config(bg='white')
-    # marco9_label.grid(row=1, column=9, sticky=W)
-    # marco10_label = Label(table_frame, text='Alto', font=my_fontdisplay)
-    # marco10_label.config(bg='white')
-    # marco10_label.grid(row=1, column=10, sticky=W)
-    # marco11_label = Label(table_frame, text='Ancho', font=my_fontdisplay)
-    # marco11_label.config(bg='white')
-    # marco11_label.grid(row=1, column=11, sticky=W)
-    # marco12_label = Label(table_frame, text='Largo', font=my_fontdisplay)
-    # marco12_label.config(bg='white')
-    # marco12_label.grid(row=1, column=12, sticky=W)
-    # marco13_label = Label(table_frame, text='Volumen', font=my_fontdisplay)
-    # marco13_label.config(bg='white')
-    # marco13_label.grid(row=1, column=13, sticky=W)
-    # marco14_label = Label(table_frame, text='Sobreexcavacion', font=my_fontdisplay)
-    # marco14_label.config(bg='white')
-    # marco14_label.grid(row=1, column=14, sticky=W)
-    # marco15_label = Label(table_frame, text='Tiempo de alquiler', font=my_fontdisplay)
-    # marco15_label.config(bg='white')
-    # marco15_label.grid(row=1, column=15, sticky=W)
-    # marco16_label = Label(table_frame, text='Numero de ciclos por hora', font=my_fontdisplay)
-    # marco16_label.config(bg='white')
-    # marco16_label.grid(row=1, column=16, sticky=W)
-    # marco17_label = Label(table_frame, text='Productividad', font=my_fontdisplay)
-    # marco17_label.config(bg='white')
-    # marco17_label.grid(row=1, column=17, sticky=W)
-    # marco18_label = Label(table_frame, text='Rendimiento', font=my_fontdisplay)
-    # marco18_label.config(bg='white')
-    # marco18_label.grid(row=1, column=18, sticky=W)
-    # i = 2
-    # for row in db.fetch():
-    #     try:
-    #         n = 0
-    #         for j in range(len(row)):
-    #             e = Text(table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
-    #             e.grid(row=i, column=j)
-    #             if n == 0:
-    #                 e.config(width=4)
-    #                 e.insert(END, row[j])
-    #             elif n == 1 or n == 6:
-    #                 e.config(width=13)
-    #                 e.insert(END, row[j])
-    #             else:
-    #                 e.config(width=10)
-    #                 e.insert(END, round(float(str(row[j])), 2))
-    #             n = n + 1
-    #         i=i+1
-    #         vacio_label = Label(table_frame, text='', font=my_font, pady=10, padx=10)
-    #         vacio_label.config(bg='white')
-    #         vacio_label.grid(row=i, column=0)
-    #     except IndexError:
-    #         pass
+#     # marco1_label = Label(table_frame, text='Excavadora', font=my_fontdisplay)
+#     # marco1_label.config(bg='white')
+#     # marco1_label.grid(row=1, column=1, sticky=W)
+#     # marco2_label = Label(table_frame, text='Excavacion', font=my_fontdisplay)
+#     # marco2_label.config(bg='white')
+#     # marco2_label.grid(row=1, column=2, sticky=W)
+#     # marco3_label = Label(table_frame, text='Balanceo', font=my_fontdisplay)
+#     # marco3_label.config(bg='white')
+#     # marco3_label.grid(row=1, column=3, sticky=W)
+#     # marco4_label = Label(table_frame, text='Carga', font=my_fontdisplay)
+#     # marco4_label.config(bg='white')
+#     # marco4_label.grid(row=1, column=4, sticky=W)
+#     # marco5_label = Label(table_frame, text='Tiempo de carga', font=my_fontdisplay)
+#     # marco5_label.config(bg='white')
+#     # marco5_label.grid(row=1, column=5, sticky=W)
+#     # marco6_label = Label(table_frame, text='Cuchara', font=my_fontdisplay)
+#     # marco6_label.config(bg='white')
+#     # marco6_label.grid(row=1, column=6, sticky=W)
+#     # marco7_label = Label(table_frame, text='Eficiencia', font=my_fontdisplay)
+#     # marco7_label.config(bg='white')
+#     # marco7_label.grid(row=1, column=7, sticky=W)
+#     # marco8_label = Label(table_frame, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
+#     # marco8_label.config(bg='white')
+#     # marco8_label.grid(row=1, column=8, sticky=W)
+#     # marco9_label = Label(table_frame, text='Capacidad neta', font=my_fontdisplay)
+#     # marco9_label.config(bg='white')
+#     # marco9_label.grid(row=1, column=9, sticky=W)
+#     # marco10_label = Label(table_frame, text='Alto', font=my_fontdisplay)
+#     # marco10_label.config(bg='white')
+#     # marco10_label.grid(row=1, column=10, sticky=W)
+#     # marco11_label = Label(table_frame, text='Ancho', font=my_fontdisplay)
+#     # marco11_label.config(bg='white')
+#     # marco11_label.grid(row=1, column=11, sticky=W)
+#     # marco12_label = Label(table_frame, text='Largo', font=my_fontdisplay)
+#     # marco12_label.config(bg='white')
+#     # marco12_label.grid(row=1, column=12, sticky=W)
+#     # marco13_label = Label(table_frame, text='Volumen', font=my_fontdisplay)
+#     # marco13_label.config(bg='white')
+#     # marco13_label.grid(row=1, column=13, sticky=W)
+#     # marco14_label = Label(table_frame, text='Sobreexcavacion', font=my_fontdisplay)
+#     # marco14_label.config(bg='white')
+#     # marco14_label.grid(row=1, column=14, sticky=W)
+#     # marco15_label = Label(table_frame, text='Tiempo de alquiler', font=my_fontdisplay)
+#     # marco15_label.config(bg='white')
+#     # marco15_label.grid(row=1, column=15, sticky=W)
+#     # marco16_label = Label(table_frame, text='Numero de ciclos por hora', font=my_fontdisplay)
+#     # marco16_label.config(bg='white')
+#     # marco16_label.grid(row=1, column=16, sticky=W)
+#     # marco17_label = Label(table_frame, text='Productividad', font=my_fontdisplay)
+#     # marco17_label.config(bg='white')
+#     # marco17_label.grid(row=1, column=17, sticky=W)
+#     # marco18_label = Label(table_frame, text='Rendimiento', font=my_fontdisplay)
+#     # marco18_label.config(bg='white')
+#     # marco18_label.grid(row=1, column=18, sticky=W)
+#     # i = 2
+#     # for row in db.fetch():
+#     #     try:
+#     #         n = 0
+#     #         for j in range(len(row)):
+#     #             e = Text(table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
+#     #             e.grid(row=i, column=j)
+#     #             if n == 0:
+#     #                 e.config(width=4)
+#     #                 e.insert(END, row[j])
+#     #             elif n == 1 or n == 6:
+#     #                 e.config(width=13)
+#     #                 e.insert(END, row[j])
+#     #             else:
+#     #                 e.config(width=10)
+#     #                 e.insert(END, round(float(str(row[j])), 2))
+#     #             n = n + 1
+#     #         i=i+1
+#     #         vacio_label = Label(table_frame, text='', font=my_font, pady=10, padx=10)
+#     #         vacio_label.config(bg='white')
+#     #         vacio_label.grid(row=i, column=0)
+#     #     except IndexError:
+#     #         pass
 
-    # tree2 = ttk.Treeview(table_frame)
+#     # tree2 = ttk.Treeview(table_frame)
 
-    # Definir las columnas y los encabezados personalizados
-    headers2 = ['ID', 'Tipo de excavadora', 'Tipo de excavación', 'Tipo de balanceo', 'Tipo de carga', 'Tiempo de carga', 'Tipo de cuchara', 'Eficiencia', 'Capacidad de la cuchara', 'Capacidad neta', 'Altura', 'Anchura', 'Longitud', 'Volumen de excavación', 'Sobreexcavación', 'Tiempo de alquiler', 'Número de ciclos por hora', 'Productividad', 'Rendimiento']
-    tree2['columns'] = list(range(len(headers2)))
-    tree2.column('#0', width=1)
-    for i, header in enumerate(headers2):
-        tree2.heading(i, text=header, anchor='center')
-        tree2.column(i, width=[50, 150, 150, 150, 150, 100, 150, 100, 150, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100][i], anchor='center')
+#     # Definir las columnas y los encabezados personalizados
+#     headers2 = ['ID', 'Tipo de excavadora', 'Tipo de excavación', 'Tipo de balanceo', 'Tipo de carga', 'Tiempo de carga', 'Tipo de cuchara', 'Eficiencia', 'Capacidad de la cuchara', 'Capacidad neta', 'Altura', 'Anchura', 'Longitud', 'Volumen de excavación', 'Sobreexcavación', 'Tiempo de alquiler', 'Número de ciclos por hora', 'Productividad', 'Rendimiento']
+#     tree2['columns'] = list(range(len(headers2)))
+#     tree2.column('#0', width=1)
+#     for i, header in enumerate(headers2):
+#         tree2.heading(i, text=header, anchor='center')
+#         tree2.column(i, width=[50, 150, 150, 150, 150, 100, 150, 100, 150, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100][i], anchor='center')
 
-    # Agregar las filas de datos
-    for row in rows[0:]:
-        tree2.insert('', 'end', values=row)
+#     # Agregar las filas de datos
+#     for row in rows[0:]:
+#         tree2.insert('', 'end', values=row)
 
-    # Crear una barra de desplazamiento
-    scrollbar2 = ttk.Scrollbar(table_frame, orient='vertical', command=tree2.yview)
-    tree2.config(yscrollcommand=scrollbar2.set)
+#     # Crear una barra de desplazamiento
+#     scrollbar2 = ttk.Scrollbar(table_frame, orient='vertical', command=tree2.yview)
+#     tree2.config(yscrollcommand=scrollbar2.set)
 
-    # Agregar la tabla y la barra de desplazamiento al marco
-    tree2.pack(side='left', fill='both', expand=True)
-    scrollbar2.pack(side='right', fill='y')
+#     # Agregar la tabla y la barra de desplazamiento al marco
+#     tree2.pack(side='left', fill='both', expand=True)
+#     scrollbar2.pack(side='right', fill='y')
 
-    # Configurar los encabezados para que encajen horizontalmente
-    for i, header in enumerate(headers2):
-        tree2.heading(i, text=header, anchor=CENTER)
-        tree2.column(i, anchor=CENTER)
+#     # Configurar los encabezados para que encajen horizontalmente
+#     for i, header in enumerate(headers2):
+#         tree2.heading(i, text=header, anchor=CENTER)
+#         tree2.column(i, anchor=CENTER)
 
-    tree2.pack_forget()
-    scrollbar2.pack_forget()
+#     tree2.pack_forget()
+#     scrollbar2.pack_forget()
 
 # def new_small_populate_list():
 #     small_table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
@@ -380,8 +379,8 @@ def actualizar_lista():
         print(flag_mostrar_detalles)
         if flag_mostrar_detalles == 0:
             small_populate_list()
-        else:
-            populate_list()
+        # else:
+        #     populate_list()
 
 def escoger_excavadora():
     mainwin.withdraw()
@@ -852,32 +851,32 @@ def eliminar_id():
     else:
         new_populate_list()
 
-def mostrar_detalles():
-    global flag_mostrar_detalles
-    if flag_mostrar_detalles == 0:
-        tree.pack_forget()
-        # populate_list()
-        tree2.pack()
-        flag_mostrar_detalles = 1
-    else:
-        tree2.pack_forget()
-        # small_populate_list()
-        tree.pack()
-        flag_mostrar_detalles = 0
-    print('flag')
-    print(flag_mostrar_detalles)
+# def mostrar_detalles():
+#     global flag_mostrar_detalles
+#     if flag_mostrar_detalles == 0:
+#         tree.pack_forget()
+#         # populate_list()
+#         tree2.pack()
+#         flag_mostrar_detalles = 1
+#     else:
+#         tree2.pack_forget()
+#         # small_populate_list()
+#         tree.pack()
+#         flag_mostrar_detalles = 0
+#     print('flag')
+#     print(flag_mostrar_detalles)
 
 iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
 
-detalles_btn = Button(table_frame_buttons, text='Detalles', width=7, command=mostrar_detalles, font=my_fonts)
+# detalles_btn = Button(table_frame_buttons, text='Detalles', width=7, command=mostrar_detalles, font=my_fonts)
 
 eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
 
 iniciar_btn.pack(anchor='n', side='left', padx=5, pady=5)
 eliminar_btn.pack(anchor='n', side='right', padx=5, pady=5)
-detalles_btn.pack(anchor='n', side='right', padx=5, pady=5)
+# detalles_btn.pack(anchor='n', side='right', padx=5, pady=5)
 
 small_populate_list()
-populate_list()
+# populate_list()
 
 mainwin.mainloop()
