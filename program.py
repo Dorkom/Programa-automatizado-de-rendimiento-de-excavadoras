@@ -119,9 +119,10 @@ def small_populate_list():
     #     tree.insert('', 'end', values=row)
     for row in rows[0:]:
         # redondear el valor de rendimiento
+        estado_actual = row[4][:2]
         rendimiento = round(float(row[7]), 2)
         # agregar la fila redondeada al tree
-        tree.insert('', 'end', values=(row[0], row[1], row[2], row[3], row[4], row[5], row[6], rendimiento))
+        tree.insert('', 'end', values=(row[0], row[1], row[2], row[3], estado_actual, row[5], row[6], rendimiento))
 
     # Crear una barra de desplazamiento
     # scrollbar = ttk.Scrollbar(table_frame, orient='vertical', command=tree.yview)
@@ -391,9 +392,10 @@ def actualizar_lista():
     rows = db.fetch()
     for row in rows[0:]:
         # redondear el valor de rendimiento
+        estado_actual = row[4][:2]
         rendimiento = round(float(row[7]), 2)
         # agregar la fila redondeada al tree
-        tree.insert('', 'end', values=(row[0], row[1], row[2], row[3], row[4], row[5], row[6], rendimiento))
+        tree.insert('', 'end', values=(row[0], row[1], row[2], row[3], estado_actual, row[5], row[6], rendimiento))
 
     global thisid
     # if flag1 != 0:
@@ -630,13 +632,13 @@ def escoger_excavadora():
             global flag_ingresar_excavadora
 
             if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
-                messagebox.showerror('Required Fields', 'Please include all fields')
+                messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
                 return
             elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
-                messagebox.showerror('Not in range','Please enter a number between 0.51 and 1.34')
+                messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.51 y 1.34')
                 return
             elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
-                messagebox.showerror('Not in range','Please enter a number between 0.92 and 1.4')
+                messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.92 y 1.4')
                 return
             else:
                 try:
@@ -668,7 +670,7 @@ def escoger_excavadora():
                     small_populate_list()
                 except ValueError:
                     flag_ingresar_excavadora = 1
-                    messagebox.showerror('Not a number', 'Please insert a number')
+                    messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
 
         if myCombo4.get() == "EB (1)" and myCombo5.get() == "Natural":
             varfac = 1.00
@@ -719,10 +721,10 @@ def escoger_excavadora():
         elif myCombo4.get() == "ES (3)" and myCombo5.get() == "Compactado":
             varfac = 0.63
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Natural":
-            messagebox.showerror('Unvalid selection','EC (3) on Natural doesnt exist')
+            messagebox.showerror('Seleccion invalida','EC en Natural no existe')
             return
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Suelto":
-            messagebox.showerror('Unvalid selection','EC (3) on Suelto doesnt exist')
+            messagebox.showerror('Seleccion invalida','EC en Suelto no existe')
             return
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Compactado":
             varfac = 1.00
@@ -978,6 +980,9 @@ def escoger_excavadora():
             ]
 
         myCombo4.configure(value=estadooptions)
+
+    def trunc_text(text):
+        return text[:2] # retorna los dos cinco caracteres
 
     maqoptions = [
         "Hyundai Robex 200LC-9SB",
