@@ -414,214 +414,214 @@ def escoger_excavadora():
     # selwin.maxsize(500, 800)
     selwin.title('Datos')
 
-    def calcular_datos2():
-        print('calcular datos')
-        selwin.withdraw()
+    # def calcular_datos2():
+    #     print('calcular datos')
+    #     selwin.withdraw()
 
-        def calcular_rend2():
-            global flag_ingresar_excavadora
-            if alto_text.get() == '' or ancho_text.get() == '' or largo_text.get() == '':
-                messagebox.showerror('Required Fields', 'Please include all fields')
-                return
-            else:
-                try:
-                    print('para cal rend')
-                    print(thisid)
-                    volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
-                    sobreexcava = volumen*1.15
-                    tiempodecarga = float(db.fetchtiempocarga(thisid))
-                    numerocicloshora = 55.0/(tiempodecarga/60.0)
-                    capacidadporhora = numerocicloshora*float(db.fetchcapacidadneta(thisid))
-                    productividad = capacidadporhora
-                    rendimiento = productividad*8.0
-                    tiempoalquiler = sobreexcava/productividad
-                    # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
-                    db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
-                    volumen_text.set(round(volumen, 2))
-                    sobreexcava_text.set(round(sobreexcava, 2))
-                    tiempoalquiler_text.set(round(tiempoalquiler, 2))
-                    numerocicloshora_text.set(round(numerocicloshora, 2))
-                    productividad_text.set(round(productividad, 2))
-                    rendimiento_text.set(round(rendimiento, 2))
+    #     def calcular_rend2():
+    #         global flag_ingresar_excavadora
+    #         if alto_text.get() == '' or ancho_text.get() == '' or largo_text.get() == '':
+    #             messagebox.showerror('Required Fields', 'Please include all fields')
+    #             return
+    #         else:
+    #             try:
+    #                 print('para cal rend')
+    #                 print(thisid)
+    #                 volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
+    #                 sobreexcava = volumen*1.15
+    #                 tiempodecarga = float(db.fetchtiempocarga(thisid))
+    #                 numerocicloshora = 55.0/(tiempodecarga/60.0)
+    #                 capacidadporhora = numerocicloshora*float(db.fetchcapacidadneta(thisid))
+    #                 productividad = capacidadporhora
+    #                 rendimiento = productividad*8.0
+    #                 tiempoalquiler = sobreexcava/productividad
+    #                 # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
+    #                 db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
+    #                 volumen_text.set(round(volumen, 2))
+    #                 sobreexcava_text.set(round(sobreexcava, 2))
+    #                 tiempoalquiler_text.set(round(tiempoalquiler, 2))
+    #                 numerocicloshora_text.set(round(numerocicloshora, 2))
+    #                 productividad_text.set(round(productividad, 2))
+    #                 rendimiento_text.set(round(rendimiento, 2))
                     
-                    flag_ingresar_excavadora = 0
-                    global flag1
-                    flag1 = 1
-                except ValueError:
-                    flag_ingresar_excavadora = 1
-                    messagebox.showerror('Not a number', 'Please insert a number')
+    #                 flag_ingresar_excavadora = 0
+    #                 global flag1
+    #                 flag1 = 1
+    #             except ValueError:
+    #                 flag_ingresar_excavadora = 1
+    #                 messagebox.showerror('Not a number', 'Please insert a number')
 
-        def on_closingapp():
-            selwin.deiconify()
-            app.destroy()
+    #     def on_closingapp():
+    #         selwin.deiconify()
+    #         app.destroy()
 
-        app = Toplevel()
-        app.configure(bg='white')
+    #     app = Toplevel()
+    #     app.configure(bg='white')
 
-        groupfinal = Frame(app)
-        groupfinaltitle1 = Frame(groupfinal)
-        groupfinalaal = Frame(groupfinal)
-        groupfinaltitle2 = Frame(groupfinal)
-        groupfinalnpr = Frame(groupfinal)
-        groupfinaltitle3 = Frame(groupfinal)
-        groupfinalvst = Frame(groupfinal)
-        groupfinalbut = Frame(groupfinal)
+    #     groupfinal = Frame(app)
+    #     groupfinaltitle1 = Frame(groupfinal)
+    #     groupfinalaal = Frame(groupfinal)
+    #     groupfinaltitle2 = Frame(groupfinal)
+    #     groupfinalnpr = Frame(groupfinal)
+    #     groupfinaltitle3 = Frame(groupfinal)
+    #     groupfinalvst = Frame(groupfinal)
+    #     groupfinalbut = Frame(groupfinal)
 
-        groupfinal.pack()
-        groupfinaltitle1.pack()
-        groupfinalaal.pack()
-        groupfinaltitle2.pack()
-        groupfinalnpr.pack()
-        groupfinaltitle3.pack()
-        groupfinalvst.pack()
-        groupfinalbut.pack()
+    #     groupfinal.pack()
+    #     groupfinaltitle1.pack()
+    #     groupfinalaal.pack()
+    #     groupfinaltitle2.pack()
+    #     groupfinalnpr.pack()
+    #     groupfinaltitle3.pack()
+    #     groupfinalvst.pack()
+    #     groupfinalbut.pack()
 
-        ingexca_label = Label(groupfinaltitle1, text='Ingresar excavacion:', font=my_fontb, pady=10, padx=10)
-        ingexca_label.config(bg='white')
-        ingexca_label.pack()
+    #     ingexca_label = Label(groupfinaltitle1, text='Ingresar excavacion:', font=my_fontb, pady=10, padx=10)
+    #     ingexca_label.config(bg='white')
+    #     ingexca_label.pack()
         
 
-        groupfinalaal1 = Frame(groupfinalaal, background='white')
-        groupfinalaal1.pack()
-        # Tiempo de ciclo
-        alto_text = StringVar(groupfinalaal1,'','alto')
-        alto_label = Label(groupfinalaal1, text='Alto', font=my_font, pady=10, padx=10)
-        alto_label.config(bg='white')
-        alto_entry = Entry(groupfinalaal1, textvariable=alto_text, width = 10, font=my_font)
-        alto_label2 = Label(groupfinalaal1, text='m', font=my_font, pady=10, padx=10)
-        alto_label2.config(bg='white')
+    #     groupfinalaal1 = Frame(groupfinalaal, background='white')
+    #     groupfinalaal1.pack()
+    #     # Tiempo de ciclo
+    #     alto_text = StringVar(groupfinalaal1,'','alto')
+    #     alto_label = Label(groupfinalaal1, text='Alto', font=my_font, pady=10, padx=10)
+    #     alto_label.config(bg='white')
+    #     alto_entry = Entry(groupfinalaal1, textvariable=alto_text, width = 10, font=my_font)
+    #     alto_label2 = Label(groupfinalaal1, text='m', font=my_font, pady=10, padx=10)
+    #     alto_label2.config(bg='white')
 
-        alto_label.pack(side='left', fill='x', anchor='w')
-        alto_entry.pack(side='left', padx=5)
-        alto_label2.pack(side='left', fill='x', anchor='e')
+    #     alto_label.pack(side='left', fill='x', anchor='w')
+    #     alto_entry.pack(side='left', padx=5)
+    #     alto_label2.pack(side='left', fill='x', anchor='e')
 
-        groupfinalaal2 = Frame(groupfinalaal, background='white')
-        groupfinalaal2.pack()
-        ancho_text = StringVar(groupfinalaal2,'','ancho')
-        ancho_label = Label(groupfinalaal2, text='Ancho', font=my_font, pady=10, padx=10)
-        ancho_label.config(bg='white')
-        ancho_entry = Entry(groupfinalaal2, textvariable=ancho_text, width = 10, font=my_font)
-        ancho_label2 = Label(groupfinalaal2, text='m', font=my_font, pady=10, padx=10)
-        ancho_label2.config(bg='white')
+    #     groupfinalaal2 = Frame(groupfinalaal, background='white')
+    #     groupfinalaal2.pack()
+    #     ancho_text = StringVar(groupfinalaal2,'','ancho')
+    #     ancho_label = Label(groupfinalaal2, text='Ancho', font=my_font, pady=10, padx=10)
+    #     ancho_label.config(bg='white')
+    #     ancho_entry = Entry(groupfinalaal2, textvariable=ancho_text, width = 10, font=my_font)
+    #     ancho_label2 = Label(groupfinalaal2, text='m', font=my_font, pady=10, padx=10)
+    #     ancho_label2.config(bg='white')
 
-        ancho_label.pack(side='left', fill='x', anchor='w')
-        ancho_entry.pack(side='left', padx=5)
-        ancho_label2.pack(side='left', fill='x', anchor='e')
+    #     ancho_label.pack(side='left', fill='x', anchor='w')
+    #     ancho_entry.pack(side='left', padx=5)
+    #     ancho_label2.pack(side='left', fill='x', anchor='e')
 
-        groupfinalaal3 = Frame(groupfinalaal, background='white')
-        groupfinalaal3.pack()
-        largo_text = StringVar(groupfinalaal3,'','largo')
-        largo_label = Label(groupfinalaal3, text='Largo', font=my_font, pady=10, padx=10)
-        largo_label.config(bg='white')
-        largo_entry = Entry(groupfinalaal3, textvariable=largo_text, width = 10, font=my_font)
-        largo_label2 = Label(groupfinalaal3, text='m', font=my_font, pady=10, padx=10)
-        largo_label2.config(bg='white')
+    #     groupfinalaal3 = Frame(groupfinalaal, background='white')
+    #     groupfinalaal3.pack()
+    #     largo_text = StringVar(groupfinalaal3,'','largo')
+    #     largo_label = Label(groupfinalaal3, text='Largo', font=my_font, pady=10, padx=10)
+    #     largo_label.config(bg='white')
+    #     largo_entry = Entry(groupfinalaal3, textvariable=largo_text, width = 10, font=my_font)
+    #     largo_label2 = Label(groupfinalaal3, text='m', font=my_font, pady=10, padx=10)
+    #     largo_label2.config(bg='white')
 
-        largo_label.pack(side='left', fill='x', anchor='w')
-        largo_entry.pack(side='left', padx=5)
-        largo_label2.pack(side='left', fill='x', anchor='e')
+    #     largo_label.pack(side='left', fill='x', anchor='w')
+    #     largo_entry.pack(side='left', padx=5)
+    #     largo_label2.pack(side='left', fill='x', anchor='e')
 
-        resuldeexca_label = Label(groupfinaltitle2, text='Resultados de la excavadora:', font=my_fontb, pady=10, padx=10)
-        resuldeexca_label.config(bg='white')
-        resuldeexca_label.pack()
+    #     resuldeexca_label = Label(groupfinaltitle2, text='Resultados de la excavadora:', font=my_fontb, pady=10, padx=10)
+    #     resuldeexca_label.config(bg='white')
+    #     resuldeexca_label.pack()
 
-        groupfinalnpr1 = Frame(groupfinalnpr)
-        groupfinalnpr1.pack()
-        numerocicloshora_text = StringVar(groupfinalnpr1,'','numerocicloshora')
-        numerocicloshora_label = Label(groupfinalnpr1, text='Numero de ciclos por hora', font=my_font, pady=10, padx=10)
-        numerocicloshora_label.config(bg='white')
-        numerocicloshora_output = Label(groupfinalnpr1, textvariable=numerocicloshora_text, relief=RAISED, font=my_font)
-        numerocicloshora_output.config(bg='white')
+    #     groupfinalnpr1 = Frame(groupfinalnpr)
+    #     groupfinalnpr1.pack()
+    #     numerocicloshora_text = StringVar(groupfinalnpr1,'','numerocicloshora')
+    #     numerocicloshora_label = Label(groupfinalnpr1, text='Numero de ciclos por hora', font=my_font, pady=10, padx=10)
+    #     numerocicloshora_label.config(bg='white')
+    #     numerocicloshora_output = Label(groupfinalnpr1, textvariable=numerocicloshora_text, relief=RAISED, font=my_font)
+    #     numerocicloshora_output.config(bg='white')
 
-        numerocicloshora_label.pack(side='left', fill='x', anchor='w')
-        numerocicloshora_output.pack(side='left', padx=5)
+    #     numerocicloshora_label.pack(side='left', fill='x', anchor='w')
+    #     numerocicloshora_output.pack(side='left', padx=5)
 
-        groupfinalnpr2 = Frame(groupfinalnpr)
-        groupfinalnpr2.pack()
-        # Productividad
-        productividad_text = StringVar(groupfinalnpr2,'','prod')
-        productividad_label = Label(groupfinalnpr2, text='Productividad', font=my_font, pady=10, padx=10)
-        productividad_label.config(bg='white')
-        productividad_output = Label(groupfinalnpr2, textvariable=productividad_text, relief=RAISED, font=my_font)
-        productividad_output.config(bg='white')
-        productividad_label2 = Label(groupfinalnpr2, text='m3/h', font=my_font, pady=10, padx=10)
-        productividad_label2.config(bg='white')
+    #     groupfinalnpr2 = Frame(groupfinalnpr)
+    #     groupfinalnpr2.pack()
+    #     # Productividad
+    #     productividad_text = StringVar(groupfinalnpr2,'','prod')
+    #     productividad_label = Label(groupfinalnpr2, text='Productividad', font=my_font, pady=10, padx=10)
+    #     productividad_label.config(bg='white')
+    #     productividad_output = Label(groupfinalnpr2, textvariable=productividad_text, relief=RAISED, font=my_font)
+    #     productividad_output.config(bg='white')
+    #     productividad_label2 = Label(groupfinalnpr2, text='m3/h', font=my_font, pady=10, padx=10)
+    #     productividad_label2.config(bg='white')
 
-        productividad_label.pack(side='left', fill='x', anchor='w')
-        productividad_output.pack(side='left', padx=5)
-        productividad_label2.pack(side='left', fill='x', anchor='e')
+    #     productividad_label.pack(side='left', fill='x', anchor='w')
+    #     productividad_output.pack(side='left', padx=5)
+    #     productividad_label2.pack(side='left', fill='x', anchor='e')
 
-        groupfinalnpr3 = Frame(groupfinalnpr)
-        groupfinalnpr3.pack()
-        # Rendimiento
-        rendimiento_text = StringVar(groupfinalnpr3,'','rend')
-        rendimiento_label = Label(groupfinalnpr3, text='Rendimiento', font=my_font, pady=10, padx=10)
-        rendimiento_label.config(bg='white')
-        rendimiento_output = Label(groupfinalnpr3, textvariable=rendimiento_text, relief=RAISED, font=my_font)
-        rendimiento_output.config(bg='white')
-        rendimiento_label2 = Label(groupfinalnpr3, text='m3/d', font=my_font, pady=10, padx=10)
-        rendimiento_label2.config(bg='white')
+    #     groupfinalnpr3 = Frame(groupfinalnpr)
+    #     groupfinalnpr3.pack()
+    #     # Rendimiento
+    #     rendimiento_text = StringVar(groupfinalnpr3,'','rend')
+    #     rendimiento_label = Label(groupfinalnpr3, text='Rendimiento', font=my_font, pady=10, padx=10)
+    #     rendimiento_label.config(bg='white')
+    #     rendimiento_output = Label(groupfinalnpr3, textvariable=rendimiento_text, relief=RAISED, font=my_font)
+    #     rendimiento_output.config(bg='white')
+    #     rendimiento_label2 = Label(groupfinalnpr3, text='m3/d', font=my_font, pady=10, padx=10)
+    #     rendimiento_label2.config(bg='white')
 
-        rendimiento_label.pack(side='left', fill='x', anchor='w')
-        rendimiento_output.pack(side='left', padx=5)
-        rendimiento_label2.pack(side='left', fill='x', anchor='e')
+    #     rendimiento_label.pack(side='left', fill='x', anchor='w')
+    #     rendimiento_output.pack(side='left', padx=5)
+    #     rendimiento_label2.pack(side='left', fill='x', anchor='e')
 
-        resuldeexcava_label = Label(groupfinaltitle3, text='Resultados de la excavacion:', font=my_fontb, pady=10, padx=10)
-        resuldeexcava_label.config(bg='white')
-        resuldeexca_label.pack()
+    #     resuldeexcava_label = Label(groupfinaltitle3, text='Resultados de la excavacion:', font=my_fontb, pady=10, padx=10)
+    #     resuldeexcava_label.config(bg='white')
+    #     resuldeexca_label.pack()
 
-        groupfinalvst1 = Frame(groupfinalvst)
-        groupfinalvst1.pack()
-        # Volumen
-        volumen_text = StringVar(groupfinalvst1,'','volumen')
-        volumen_label = Label(groupfinalvst1, text='Volumen', font=my_font, pady=10, padx=10)
-        volumen_label.config(bg='white')
-        volumen_output = Label(groupfinalvst1, textvariable=volumen_text, relief=RAISED, font=my_font)
-        volumen_output.config(bg='white')
-        volumen_label2 = Label(groupfinalvst1, text='m3', font=my_font, pady=10, padx=10)
-        volumen_label2.config(bg='white')
+    #     groupfinalvst1 = Frame(groupfinalvst)
+    #     groupfinalvst1.pack()
+    #     # Volumen
+    #     volumen_text = StringVar(groupfinalvst1,'','volumen')
+    #     volumen_label = Label(groupfinalvst1, text='Volumen', font=my_font, pady=10, padx=10)
+    #     volumen_label.config(bg='white')
+    #     volumen_output = Label(groupfinalvst1, textvariable=volumen_text, relief=RAISED, font=my_font)
+    #     volumen_output.config(bg='white')
+    #     volumen_label2 = Label(groupfinalvst1, text='m3', font=my_font, pady=10, padx=10)
+    #     volumen_label2.config(bg='white')
 
-        volumen_label.pack(side='left', fill='x', anchor='w')
-        volumen_output.pack(side='left', padx=5)
-        volumen_label2.pack(side='left', fill='x', anchor='e')
+    #     volumen_label.pack(side='left', fill='x', anchor='w')
+    #     volumen_output.pack(side='left', padx=5)
+    #     volumen_label2.pack(side='left', fill='x', anchor='e')
 
-        groupfinalvst2 = Frame(groupfinalvst)
-        groupfinalvst2.pack()
-        sobreexcava_text = StringVar(groupfinalvst2,'','sobreexcava')
-        sobreexcava_label = Label(groupfinalvst2, text='Sobreexcavacion', font=my_font, pady=10, padx=10)
-        sobreexcava_label.config(bg='white')
-        sobreexcava_output = Label(groupfinalvst2, textvariable=sobreexcava_text, relief=RAISED, font=my_font)
-        sobreexcava_output.config(bg='white')
-        sobreexcava_label2 = Label(groupfinalvst2, text='m3', font=my_font, pady=10, padx=10)
-        sobreexcava_label2.config(bg='white')
+    #     groupfinalvst2 = Frame(groupfinalvst)
+    #     groupfinalvst2.pack()
+    #     sobreexcava_text = StringVar(groupfinalvst2,'','sobreexcava')
+    #     sobreexcava_label = Label(groupfinalvst2, text='Sobreexcavacion', font=my_font, pady=10, padx=10)
+    #     sobreexcava_label.config(bg='white')
+    #     sobreexcava_output = Label(groupfinalvst2, textvariable=sobreexcava_text, relief=RAISED, font=my_font)
+    #     sobreexcava_output.config(bg='white')
+    #     sobreexcava_label2 = Label(groupfinalvst2, text='m3', font=my_font, pady=10, padx=10)
+    #     sobreexcava_label2.config(bg='white')
 
-        sobreexcava_label.pack(side='left', fill='x', anchor='w')
-        sobreexcava_output.pack(side='left', padx=5)
-        sobreexcava_label2.pack(side='left', fill='x', anchor='e')
+    #     sobreexcava_label.pack(side='left', fill='x', anchor='w')
+    #     sobreexcava_output.pack(side='left', padx=5)
+    #     sobreexcava_label2.pack(side='left', fill='x', anchor='e')
 
-        groupfinalvst3 = Frame(groupfinalvst)
-        groupfinalvst3.pack()
-        tiempoalquiler_text = StringVar(groupfinalvst3,'','tiempoalquiler')
-        tiempoalquiler_label = Label(groupfinalvst3, text='Tiempo de alquiler', font=my_font, pady=10, padx=10)
-        tiempoalquiler_label.config(bg='white')
-        tiempoalquiler_output = Label(groupfinalvst3, textvariable=tiempoalquiler_text, relief=RAISED, font=my_font)
-        tiempoalquiler_output.config(bg='white')
-        tiempoalquiler_label2 = Label(groupfinalvst3, text='h', font=my_font, pady=10, padx=10)
-        tiempoalquiler_label2.config(bg='white')
+    #     groupfinalvst3 = Frame(groupfinalvst)
+    #     groupfinalvst3.pack()
+    #     tiempoalquiler_text = StringVar(groupfinalvst3,'','tiempoalquiler')
+    #     tiempoalquiler_label = Label(groupfinalvst3, text='Tiempo de alquiler', font=my_font, pady=10, padx=10)
+    #     tiempoalquiler_label.config(bg='white')
+    #     tiempoalquiler_output = Label(groupfinalvst3, textvariable=tiempoalquiler_text, relief=RAISED, font=my_font)
+    #     tiempoalquiler_output.config(bg='white')
+    #     tiempoalquiler_label2 = Label(groupfinalvst3, text='h', font=my_font, pady=10, padx=10)
+    #     tiempoalquiler_label2.config(bg='white')
 
-        tiempoalquiler_label.pack(side='left', fill='x', anchor='w')
-        tiempoalquiler_output.pack(side='left', padx=5)
-        tiempoalquiler_label2.pack(side='left', fill='x', anchor='e')
+    #     tiempoalquiler_label.pack(side='left', fill='x', anchor='w')
+    #     tiempoalquiler_output.pack(side='left', padx=5)
+    #     tiempoalquiler_label2.pack(side='left', fill='x', anchor='e')
 
-        # Buttons
-        calcular_btn = Button(groupfinalbut, text='Calcular rendimiento', width=20, command=calcular_rend2, font=my_fonts)
-        calcular_btn.pack()
+    #     # Buttons
+    #     calcular_btn = Button(groupfinalbut, text='Calcular rendimiento', width=20, command=calcular_rend2, font=my_fonts)
+    #     calcular_btn.pack()
 
-        app.title('Rendimiento')
-        # app.maxsize(1000, 1000)
+    #     app.title('Rendimiento')
+    #     # app.maxsize(1000, 1000)
 
-        app.protocol("WM_DELETE_WINDOW", on_closingapp)
-        app.mainloop()
+    #     app.protocol("WM_DELETE_WINDOW", on_closingapp)
+    #     app.mainloop()
         
     def calcular_datos():
         global varfac
@@ -633,10 +633,10 @@ def escoger_excavadora():
                 messagebox.showerror('Required Fields', 'Please include all fields')
                 return
             elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
-                messagebox.showerror('Please enter a number between 0.51 and 1.34')
+                messagebox.showerror('Not in range','Please enter a number between 0.51 and 1.34')
                 return
             elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
-                messagebox.showerror('Please enter a number between 0.92 and 1.4')
+                messagebox.showerror('Not in range','Please enter a number between 0.92 and 1.4')
                 return
             else:
                 try:
@@ -719,10 +719,10 @@ def escoger_excavadora():
         elif myCombo4.get() == "ES (3)" and myCombo5.get() == "Compactado":
             varfac = 0.63
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Natural":
-            messagebox.showerror('EC (3) on Natural doesnt exist')
+            messagebox.showerror('Unvalid selection','EC (3) on Natural doesnt exist')
             return
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Suelto":
-            messagebox.showerror('EC (3) on Suelto doesnt exist')
+            messagebox.showerror('Unvalid selection','EC (3) on Suelto doesnt exist')
             return
         elif myCombo4.get() == "EC (3)" and myCombo5.get() == "Compactado":
             varfac = 1.00
@@ -1019,7 +1019,7 @@ def escoger_excavadora():
     myCombo1.bind("<<ComboboxSelected>>", comboclick1)
     myCombo1.pack()
 
-    imagenexca = Label(groupcombotop)
+    imagenexca = Label(groupcombotop, bg='white')
     imagenexca.pack()
 
     selcu_label = Label(groupcombobot, text='Seleccionar cucharon:', font=my_fontb, pady=10, padx=10)
@@ -1030,7 +1030,7 @@ def escoger_excavadora():
     myCombo2.bind("<<ComboboxSelected>>", comboclick2)
     myCombo2.pack()
 
-    imagenpala = Label(groupcombobot)
+    imagenpala = Label(groupcombobot, bg='white')
     imagenpala.pack()
 
     ingresarclase_material = Label(groupingresa, text='Escoger clase de material:', font=my_fontb, pady=10, padx=10, bg='white')
@@ -1062,7 +1062,7 @@ def escoger_excavadora():
 
     ingresardat_text = StringVar(groupingresa, '', 'capacidadcucharon')
     ingresardat_entry = Entry(groupingresa, textvariable=ingresardat_text, width=10, fon=my_font)
-    ingresardat_entry.pack()
+    ingresardat_entry.pack(pady=10)
 
     # group1 = Frame(groupingresa, background='white')
     # group1.pack(side='top', pady=5)
@@ -1103,7 +1103,8 @@ def escoger_excavadora():
     # ingresarexca_btn.pack()
 
     escojer1_btn = Button(groupingresa, text='Ingresar excavacion', width=20, command=calcular_datos, font=my_fonts)
-    escojer1_btn.pack(side='top', anchor='center')
+    # escojer1_btn.pack(side='top', anchor='center', pady=10)
+    escojer1_btn.pack(side='top',  pady=10)
     # escojer1_btn["state"] = "disabled"
 
     selwin.protocol("WM_DELETE_WINDOW", on_closingselwin)
