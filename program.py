@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from db import Database
 from tkinter import messagebox
 import tkinter.font
+import os
 
 db = Database('maq.db')
 rows = db.fetch()
@@ -13,6 +14,7 @@ mainwin=Tk()
 mainwin.maxsize= (1000, 1000)
 mainwin.title('Registro')
 mainwin.configure(bg='white')
+mainwin.resizable(False, False)
 
 my_font = tkinter.font.Font(family="Arial Black", size=12)
 my_fonts = tkinter.font.Font(family="Arial Black", size=10)
@@ -36,74 +38,71 @@ global flag_mostrar_detalles
 flag_mostrar_detalles = 0
 global flag_eliminar
 flag_eliminar = 0
+global rendimiento
 print(thisid)
 
 # variable de factor
 global varfac
 varfac = 0
 
-# crear un frame y poner la tabla ahi, luego borrar el frame
-
+# creacion de frames
 table_frame_buttons = Frame(mainwin, padx = 3)
 table_frame_buttons.config(bg='white')
-
-# small_table_frame = Frame(mainwin, width = 700, height = 200, padx = 3)
-# small_table_frame.config(bg='white')
 
 table_frame = Frame(mainwin, padx = 3)
 table_frame.config(bg='white')
 
-table_frame_buttons.pack(side='top')
-# small_table_frame.pack(side='bottom')
+inicio_frame = Frame(mainwin, padx = 3)
+inicio_frame.config(bg='white')
+
+nuevo_frame = Frame(mainwin, padx = 3)
+nuevo_frame.config(bg='white')
+
+registros_frame = Frame(mainwin, padx = 3)
+registros_frame.config(bg='white')
+
+ayuda_frame = Frame(mainwin, padx = 3)
+ayuda_frame.config(bg='white')
+
+formulas_frame = Frame(mainwin, padx = 3)
+formulas_frame.config(bg='white')
+
+table_frame_buttons.pack(side='top', anchor='nw')
 table_frame.pack(side='bottom')
+inicio_frame.pack(side='bottom')
+nuevo_frame.pack(side='bottom')
+registros_frame.pack(side='bottom')
+ayuda_frame.pack(side='bottom')
+formulas_frame.pack(side='bottom')
 
-# ocultar los frames
-# small_table_frame.pack_forget()
+nuevo_frame.pack_forget()
+registros_frame.pack_forget()
+ayuda_frame.pack_forget()
+formulas_frame.pack_forget()
 
-tree = ttk.Treeview(table_frame)
-# tree2 = ttk.Treeview(table_frame)
+# creacion del tree y scrollbar
+tree = ttk.Treeview(registros_frame)
+scrollbar = ttk.Scrollbar(registros_frame)
+tree.pack(side='left', fill='both', expand=True)
+scrollbar.pack(side='right', fill='y')
+# tree.pack_forget()
+# scrollbar.pack_forget()
 
-scrollbar = ttk.Scrollbar(table_frame)
+# creacion de la imagen de inicio
+imageinicio = Image.open('imageninicio.jpg')
+imageinicioqr = imageinicio.resize((450,350))
+photoimageq = ImageTk.PhotoImage(imageinicioqr)
+imagendeinicio = Label(inicio_frame, bg='white', image=photoimageq)
+imagendeinicio.pack()
+
+# creacion de la imagen de Formulas
+imageformulas = Image.open('imagenformulas.jpg')
+imageformulasqr = imageformulas.resize((450,350))
+photoimageqformulas = ImageTk.PhotoImage(imageformulasqr)
+imagendeformulas = Label(formulas_frame, bg='white', image=photoimageqformulas)
+imagendeformulas.pack()
 
 def small_populate_list():
-
-    # small_table_frame.grid()
-    
-
-    # marco1_label = Label(small_table_frame, text='Excavadora', font=my_fontdisplay)
-    # marco1_label.config(bg='white')
-    # marco1_label.grid(row=1, column=1, sticky=W)
-    # marco2_label = Label(small_table_frame, text='Cuchara', font=my_fontdisplay)
-    # marco2_label.config(bg='white')
-    # marco2_label.grid(row=1, column=2, sticky=W)
-    # marco3_label = Label(small_table_frame, text='Productividad', font=my_fontdisplay)
-    # marco3_label.config(bg='white')
-    # marco3_label.grid(row=1, column=3, sticky=W)
-    # marco4_label = Label(small_table_frame, text='Rendimiento', font=my_fontdisplay)
-    # marco4_label.config(bg='white')
-    # marco4_label.grid(row=1, column=4, sticky=W)
-    # i = 2
-    # for row in db.smallfetch():
-    #     try:
-    #         n = 0
-    #         for j in range(len(row)):
-    #             e = Text(small_table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
-    #             e.grid(row=i, column=j)
-    #             if n == 0:
-    #                 e.config(width=4)
-    #                 e.insert(END, row[j])
-    #             elif n == 1 or n == 2:
-    #                 e.config(width=13)
-    #                 e.insert(END, row[j])
-    #             else:
-    #                 e.config(width=10)
-    #                 e.insert(END, round(float(str(row[j])), 2))
-    #             n = n + 1
-    #         i=i+1
-    #     except IndexError:
-    #         pass
-
-    # tree = ttk.Treeview(table_frame)
 
     # Definir las columnas y los encabezados personalizados
     
@@ -130,9 +129,9 @@ def small_populate_list():
     tree.config(yscrollcommand=scrollbar.set)
 
     # Agregar la tabla y la barra de desplazamiento al marco
-    tree.pack(side='left', fill='both', expand=True)
-    tree.pack()
-    scrollbar.pack(side='right', fill='y')
+    # tree.pack(side='left', fill='both', expand=True)
+    # tree.pack()
+    # scrollbar.pack(side='right', fill='y')
 
     # Configurar los encabezados para que encajen horizontalmente
     for i, header in enumerate(headers):
@@ -149,243 +148,6 @@ def small_populate_list():
     tree.column(7, width=180)
 
     mainwin.update_idletasks()
-
-# def populate_list():
-    
-#     # table_frame.grid()
-
-#     # table_frame.pack()
-
-#     # marco1_label = Label(table_frame, text='Excavadora', font=my_fontdisplay)
-#     # marco1_label.config(bg='white')
-#     # marco1_label.grid(row=1, column=1, sticky=W)
-#     # marco2_label = Label(table_frame, text='Excavacion', font=my_fontdisplay)
-#     # marco2_label.config(bg='white')
-#     # marco2_label.grid(row=1, column=2, sticky=W)
-#     # marco3_label = Label(table_frame, text='Balanceo', font=my_fontdisplay)
-#     # marco3_label.config(bg='white')
-#     # marco3_label.grid(row=1, column=3, sticky=W)
-#     # marco4_label = Label(table_frame, text='Carga', font=my_fontdisplay)
-#     # marco4_label.config(bg='white')
-#     # marco4_label.grid(row=1, column=4, sticky=W)
-#     # marco5_label = Label(table_frame, text='Tiempo de carga', font=my_fontdisplay)
-#     # marco5_label.config(bg='white')
-#     # marco5_label.grid(row=1, column=5, sticky=W)
-#     # marco6_label = Label(table_frame, text='Cuchara', font=my_fontdisplay)
-#     # marco6_label.config(bg='white')
-#     # marco6_label.grid(row=1, column=6, sticky=W)
-#     # marco7_label = Label(table_frame, text='Eficiencia', font=my_fontdisplay)
-#     # marco7_label.config(bg='white')
-#     # marco7_label.grid(row=1, column=7, sticky=W)
-#     # marco8_label = Label(table_frame, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
-#     # marco8_label.config(bg='white')
-#     # marco8_label.grid(row=1, column=8, sticky=W)
-#     # marco9_label = Label(table_frame, text='Capacidad neta', font=my_fontdisplay)
-#     # marco9_label.config(bg='white')
-#     # marco9_label.grid(row=1, column=9, sticky=W)
-#     # marco10_label = Label(table_frame, text='Alto', font=my_fontdisplay)
-#     # marco10_label.config(bg='white')
-#     # marco10_label.grid(row=1, column=10, sticky=W)
-#     # marco11_label = Label(table_frame, text='Ancho', font=my_fontdisplay)
-#     # marco11_label.config(bg='white')
-#     # marco11_label.grid(row=1, column=11, sticky=W)
-#     # marco12_label = Label(table_frame, text='Largo', font=my_fontdisplay)
-#     # marco12_label.config(bg='white')
-#     # marco12_label.grid(row=1, column=12, sticky=W)
-#     # marco13_label = Label(table_frame, text='Volumen', font=my_fontdisplay)
-#     # marco13_label.config(bg='white')
-#     # marco13_label.grid(row=1, column=13, sticky=W)
-#     # marco14_label = Label(table_frame, text='Sobreexcavacion', font=my_fontdisplay)
-#     # marco14_label.config(bg='white')
-#     # marco14_label.grid(row=1, column=14, sticky=W)
-#     # marco15_label = Label(table_frame, text='Tiempo de alquiler', font=my_fontdisplay)
-#     # marco15_label.config(bg='white')
-#     # marco15_label.grid(row=1, column=15, sticky=W)
-#     # marco16_label = Label(table_frame, text='Numero de ciclos por hora', font=my_fontdisplay)
-#     # marco16_label.config(bg='white')
-#     # marco16_label.grid(row=1, column=16, sticky=W)
-#     # marco17_label = Label(table_frame, text='Productividad', font=my_fontdisplay)
-#     # marco17_label.config(bg='white')
-#     # marco17_label.grid(row=1, column=17, sticky=W)
-#     # marco18_label = Label(table_frame, text='Rendimiento', font=my_fontdisplay)
-#     # marco18_label.config(bg='white')
-#     # marco18_label.grid(row=1, column=18, sticky=W)
-#     # i = 2
-#     # for row in db.fetch():
-#     #     try:
-#     #         n = 0
-#     #         for j in range(len(row)):
-#     #             e = Text(table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
-#     #             e.grid(row=i, column=j)
-#     #             if n == 0:
-#     #                 e.config(width=4)
-#     #                 e.insert(END, row[j])
-#     #             elif n == 1 or n == 6:
-#     #                 e.config(width=13)
-#     #                 e.insert(END, row[j])
-#     #             else:
-#     #                 e.config(width=10)
-#     #                 e.insert(END, round(float(str(row[j])), 2))
-#     #             n = n + 1
-#     #         i=i+1
-#     #         vacio_label = Label(table_frame, text='', font=my_font, pady=10, padx=10)
-#     #         vacio_label.config(bg='white')
-#     #         vacio_label.grid(row=i, column=0)
-#     #     except IndexError:
-#     #         pass
-
-#     # tree2 = ttk.Treeview(table_frame)
-
-#     # Definir las columnas y los encabezados personalizados
-#     headers2 = ['ID', 'Tipo de excavadora', 'Tipo de excavación', 'Tipo de balanceo', 'Tipo de carga', 'Tiempo de carga', 'Tipo de cuchara', 'Eficiencia', 'Capacidad de la cuchara', 'Capacidad neta', 'Altura', 'Anchura', 'Longitud', 'Volumen de excavación', 'Sobreexcavación', 'Tiempo de alquiler', 'Número de ciclos por hora', 'Productividad', 'Rendimiento']
-#     tree2['columns'] = list(range(len(headers2)))
-#     tree2.column('#0', width=1)
-#     for i, header in enumerate(headers2):
-#         tree2.heading(i, text=header, anchor='center')
-#         tree2.column(i, width=[50, 150, 150, 150, 150, 100, 150, 100, 150, 100, 100, 100, 100, 150, 150, 150, 150, 100, 100][i], anchor='center')
-
-#     # Agregar las filas de datos
-#     for row in rows[0:]:
-#         tree2.insert('', 'end', values=row)
-
-#     # Crear una barra de desplazamiento
-#     scrollbar2 = ttk.Scrollbar(table_frame, orient='vertical', command=tree2.yview)
-#     tree2.config(yscrollcommand=scrollbar2.set)
-
-#     # Agregar la tabla y la barra de desplazamiento al marco
-#     tree2.pack(side='left', fill='both', expand=True)
-#     scrollbar2.pack(side='right', fill='y')
-
-#     # Configurar los encabezados para que encajen horizontalmente
-#     for i, header in enumerate(headers2):
-#         tree2.heading(i, text=header, anchor=CENTER)
-#         tree2.column(i, anchor=CENTER)
-
-#     tree2.pack_forget()
-#     scrollbar2.pack_forget()
-
-# def new_small_populate_list():
-#     small_table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
-
-#     # small_table_frame.grid(row=1, sticky="ns")
-
-#     small_table_frame.pack(side='bottom')
-
-#     marco1_label = Label(small_table_frame, text='Excavadora', font=my_fontdisplay)
-#     marco1_label.grid(row=1, column=1, sticky=W)
-#     marco2_label = Label(small_table_frame, text='Cuchara', font=my_fontdisplay)
-#     marco2_label.grid(row=1, column=2, sticky=W)
-#     marco3_label = Label(small_table_frame, text='Productividad', font=my_fontdisplay)
-#     marco3_label.grid(row=1, column=3, sticky=W)
-#     marco4_label = Label(small_table_frame, text='Rendimiento', font=my_fontdisplay)
-#     marco4_label.grid(row=1, column=4, sticky=W)
-#     i = 2
-#     for row in db.smallfetch():
-#         try:
-#             n = 0
-#             for j in range(len(row)):
-#                 e = Text(small_table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
-#                 e.grid(row=i, column=j)
-#                 if n == 0:
-#                     e.config(width=4)
-#                     e.insert(END, row[j])
-#                 elif n == 1 or n == 2:
-#                     e.config(width=13)
-#                     e.insert(END, row[j])
-#                 else:
-#                     e.config(width=10)
-#                     e.insert(END, round(float(str(row[j])), 2))
-
-#                 e.insert(END, row[j])
-#                 n = n + 1
-#             i=i+1
-#         except IndexError:
-#             pass
-
-# def new_populate_list():
-#     table_frame = Frame(mainwin, width = 1000, height = 200, padx = 3)
-#     table_frame.grid(row=1, sticky="ns")
-#     # table_frame.grid_remove()
-#     # excavadora, excavacion, balanceo, carga, tiempocarga, cuchara, eficiencia, capacidadcuchara, capacidadneta, alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
-#     # table_frame.grid()
-#     marco1_label = Label(table_frame, text='Excavadora', font=my_fontdisplay)
-#     marco1_label.config(bg='white')
-#     marco1_label.grid(row=1, column=1, sticky=W)
-#     marco2_label = Label(table_frame, text='Excavacion', font=my_fontdisplay)
-#     marco2_label.config(bg='white')
-#     marco2_label.grid(row=1, column=2, sticky=W)
-#     marco3_label = Label(table_frame, text='Balanceo', font=my_fontdisplay)
-#     marco3_label.config(bg='white')
-#     marco3_label.grid(row=1, column=3, sticky=W)
-#     marco4_label = Label(table_frame, text='Carga', font=my_fontdisplay)
-#     marco4_label.config(bg='white')
-#     marco4_label.grid(row=1, column=4, sticky=W)
-#     marco5_label = Label(table_frame, text='Tiempo de carga', font=my_fontdisplay)
-#     marco5_label.config(bg='white')
-#     marco5_label.grid(row=1, column=5, sticky=W)
-#     marco6_label = Label(table_frame, text='Cuchara', font=my_fontdisplay)
-#     marco6_label.config(bg='white')
-#     marco6_label.grid(row=1, column=6, sticky=W)
-#     marco7_label = Label(table_frame, text='Eficiencia', font=my_fontdisplay)
-#     marco7_label.config(bg='white')
-#     marco7_label.grid(row=1, column=7, sticky=W)
-#     marco8_label = Label(table_frame, text='Capacidad de cuchara', font=my_fontdisplay, wraplength=100)
-#     marco8_label.config(bg='white')
-#     marco8_label.grid(row=1, column=8, sticky=W)
-#     marco9_label = Label(table_frame, text='Capacidad neta', font=my_fontdisplay)
-#     marco9_label.config(bg='white')
-#     marco9_label.grid(row=1, column=9, sticky=W)
-#     marco10_label = Label(table_frame, text='Alto', font=my_fontdisplay)
-#     marco10_label.config(bg='white')
-#     marco10_label.grid(row=1, column=10, sticky=W)
-#     marco11_label = Label(table_frame, text='Ancho', font=my_fontdisplay)
-#     marco11_label.config(bg='white')
-#     marco11_label.grid(row=1, column=11, sticky=W)
-#     marco12_label = Label(table_frame, text='Largo', font=my_fontdisplay)
-#     marco12_label.config(bg='white')
-#     marco12_label.grid(row=1, column=12, sticky=W)
-#     marco13_label = Label(table_frame, text='Volumen', font=my_fontdisplay)
-#     marco13_label.config(bg='white')
-#     marco13_label.grid(row=1, column=13, sticky=W)
-#     marco14_label = Label(table_frame, text='Sobreexcavacion', font=my_fontdisplay)
-#     marco14_label.config(bg='white')
-#     marco14_label.grid(row=1, column=14, sticky=W)
-#     marco15_label = Label(table_frame, text='Tiempo de alquiler', font=my_fontdisplay)
-#     marco15_label.config(bg='white')
-#     marco15_label.grid(row=1, column=15, sticky=W)
-#     marco16_label = Label(table_frame, text='Numero de ciclos por hora', font=my_fontdisplay)
-#     marco16_label.config(bg='white')
-#     marco16_label.grid(row=1, column=16, sticky=W)
-#     marco17_label = Label(table_frame, text='Productividad', font=my_fontdisplay)
-#     marco17_label.config(bg='white')
-#     marco17_label.grid(row=1, column=17, sticky=W)
-#     marco18_label = Label(table_frame, text='Rendimiento', font=my_fontdisplay)
-#     marco18_label.config(bg='white')
-#     marco18_label.grid(row=1, column=18, sticky=W)
-#     i = 2
-#     for row in db.fetch():
-#         try:
-#             n = 0
-#             for j in range(len(row)):
-#                 e = Text(table_frame, width=16, height=2, fg='black', font=my_fontdisplay, wrap=None)
-#                 e.grid(row=i, column=j)
-#                 # if n == 0 or n == 1 or n == 6:
-#                 if n == 0:
-#                     e.config(width=4)
-#                     e.insert(END, row[j])
-#                 elif n == 1 or n == 6:
-#                     e.config(width=13)
-#                     e.insert(END, row[j])
-#                 else:
-#                     e.config(width=10)
-#                     e.insert(END, round(float(str(row[j])), 2))
-#                 # e.insert(END, row[j])
-#                 n = n + 1
-#             i=i+1
-#             vacio_label = Label(table_frame, text='', font=my_font, pady=10, padx=10)
-#             vacio_label.grid(row=i, column=0)
-#         except IndexError:
-#             pass
 
 def actualizar_lista():
     tree.delete(*tree.get_children())
@@ -409,226 +171,54 @@ def actualizar_lista():
         #     small_populate_list()
         # else:
         #     populate_list()
+
+def eliminar_id():
+    # iniciar_btn["state"] = "disabled"
+    # detalles_btn["state"] = "disabled"
+    global thisid
+    global flag_mostrar_detalles
+
+    # db.remove(thisid)
+    ideliminar = int(dato_eliminar_entry.get())
+    db.remove(ideliminar)
     
-def escoger_excavadora():
-    mainwin.withdraw()
-    selwin=Toplevel()
-    # selwin.maxsize(500, 800)
-    selwin.title('Datos')
+    # thisid = 0
+    actualizar_lista()
+    # for row in db.fetch():
+    #     thisid = thisid + 1
+    print('flag')
+    print(flag_mostrar_detalles)
+    # if flag_mostrar_detalles == 0:
+    #     new_small_populate_list()
+    # else:
+    #     new_populate_list()
 
-    # def calcular_datos2():
-    #     print('calcular datos')
-    #     selwin.withdraw()
+def configurar_imagen():
+    imageinicio = Image.open('27-1.jpg')
+    imageinicioqr = imageinicio.resize((150,150))
+    photoimageq = ImageTk.PhotoImage(imageinicioqr)
+    imagendeinicio.config(image=photoimageq)
+    # imagendeinicio.image = photoimageq
+    # imagendeinicio.pack()
+    # imagendeinicio.pack_configure(side='top', padx=5, pady=5, anchor='nw', expand=False)
 
-    #     def calcular_rend2():
-    #         global flag_ingresar_excavadora
-    #         if alto_text.get() == '' or ancho_text.get() == '' or largo_text.get() == '':
-    #             messagebox.showerror('Required Fields', 'Please include all fields')
-    #             return
-    #         else:
-    #             try:
-    #                 print('para cal rend')
-    #                 print(thisid)
-    #                 volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
-    #                 sobreexcava = volumen*1.15
-    #                 tiempodecarga = float(db.fetchtiempocarga(thisid))
-    #                 numerocicloshora = 55.0/(tiempodecarga/60.0)
-    #                 capacidadporhora = numerocicloshora*float(db.fetchcapacidadneta(thisid))
-    #                 productividad = capacidadporhora
-    #                 rendimiento = productividad*8.0
-    #                 tiempoalquiler = sobreexcava/productividad
-    #                 # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
-    #                 db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
-    #                 volumen_text.set(round(volumen, 2))
-    #                 sobreexcava_text.set(round(sobreexcava, 2))
-    #                 tiempoalquiler_text.set(round(tiempoalquiler, 2))
-    #                 numerocicloshora_text.set(round(numerocicloshora, 2))
-    #                 productividad_text.set(round(productividad, 2))
-    #                 rendimiento_text.set(round(rendimiento, 2))
-                    
-    #                 flag_ingresar_excavadora = 0
-    #                 global flag1
-    #                 flag1 = 1
-    #             except ValueError:
-    #                 flag_ingresar_excavadora = 1
-    #                 messagebox.showerror('Not a number', 'Please insert a number')
+def configurar_nuevo():
+    # mainwin.withdraw()
+    # selwin=Toplevel()
+    
+    # selwin.title('Datos')
+    global rendimiento
 
-    #     def on_closingapp():
-    #         selwin.deiconify()
-    #         app.destroy()
+    def grabar_rend():
+        global rendimiento
+        db.insert(myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+        actualizar_lista()
 
-    #     app = Toplevel()
-    #     app.configure(bg='white')
-
-    #     groupfinal = Frame(app)
-    #     groupfinaltitle1 = Frame(groupfinal)
-    #     groupfinalaal = Frame(groupfinal)
-    #     groupfinaltitle2 = Frame(groupfinal)
-    #     groupfinalnpr = Frame(groupfinal)
-    #     groupfinaltitle3 = Frame(groupfinal)
-    #     groupfinalvst = Frame(groupfinal)
-    #     groupfinalbut = Frame(groupfinal)
-
-    #     groupfinal.pack()
-    #     groupfinaltitle1.pack()
-    #     groupfinalaal.pack()
-    #     groupfinaltitle2.pack()
-    #     groupfinalnpr.pack()
-    #     groupfinaltitle3.pack()
-    #     groupfinalvst.pack()
-    #     groupfinalbut.pack()
-
-    #     ingexca_label = Label(groupfinaltitle1, text='Ingresar excavacion:', font=my_fontb, pady=10, padx=10)
-    #     ingexca_label.config(bg='white')
-    #     ingexca_label.pack()
-        
-
-    #     groupfinalaal1 = Frame(groupfinalaal, background='white')
-    #     groupfinalaal1.pack()
-    #     # Tiempo de ciclo
-    #     alto_text = StringVar(groupfinalaal1,'','alto')
-    #     alto_label = Label(groupfinalaal1, text='Alto', font=my_font, pady=10, padx=10)
-    #     alto_label.config(bg='white')
-    #     alto_entry = Entry(groupfinalaal1, textvariable=alto_text, width = 10, font=my_font)
-    #     alto_label2 = Label(groupfinalaal1, text='m', font=my_font, pady=10, padx=10)
-    #     alto_label2.config(bg='white')
-
-    #     alto_label.pack(side='left', fill='x', anchor='w')
-    #     alto_entry.pack(side='left', padx=5)
-    #     alto_label2.pack(side='left', fill='x', anchor='e')
-
-    #     groupfinalaal2 = Frame(groupfinalaal, background='white')
-    #     groupfinalaal2.pack()
-    #     ancho_text = StringVar(groupfinalaal2,'','ancho')
-    #     ancho_label = Label(groupfinalaal2, text='Ancho', font=my_font, pady=10, padx=10)
-    #     ancho_label.config(bg='white')
-    #     ancho_entry = Entry(groupfinalaal2, textvariable=ancho_text, width = 10, font=my_font)
-    #     ancho_label2 = Label(groupfinalaal2, text='m', font=my_font, pady=10, padx=10)
-    #     ancho_label2.config(bg='white')
-
-    #     ancho_label.pack(side='left', fill='x', anchor='w')
-    #     ancho_entry.pack(side='left', padx=5)
-    #     ancho_label2.pack(side='left', fill='x', anchor='e')
-
-    #     groupfinalaal3 = Frame(groupfinalaal, background='white')
-    #     groupfinalaal3.pack()
-    #     largo_text = StringVar(groupfinalaal3,'','largo')
-    #     largo_label = Label(groupfinalaal3, text='Largo', font=my_font, pady=10, padx=10)
-    #     largo_label.config(bg='white')
-    #     largo_entry = Entry(groupfinalaal3, textvariable=largo_text, width = 10, font=my_font)
-    #     largo_label2 = Label(groupfinalaal3, text='m', font=my_font, pady=10, padx=10)
-    #     largo_label2.config(bg='white')
-
-    #     largo_label.pack(side='left', fill='x', anchor='w')
-    #     largo_entry.pack(side='left', padx=5)
-    #     largo_label2.pack(side='left', fill='x', anchor='e')
-
-    #     resuldeexca_label = Label(groupfinaltitle2, text='Resultados de la excavadora:', font=my_fontb, pady=10, padx=10)
-    #     resuldeexca_label.config(bg='white')
-    #     resuldeexca_label.pack()
-
-    #     groupfinalnpr1 = Frame(groupfinalnpr)
-    #     groupfinalnpr1.pack()
-    #     numerocicloshora_text = StringVar(groupfinalnpr1,'','numerocicloshora')
-    #     numerocicloshora_label = Label(groupfinalnpr1, text='Numero de ciclos por hora', font=my_font, pady=10, padx=10)
-    #     numerocicloshora_label.config(bg='white')
-    #     numerocicloshora_output = Label(groupfinalnpr1, textvariable=numerocicloshora_text, relief=RAISED, font=my_font)
-    #     numerocicloshora_output.config(bg='white')
-
-    #     numerocicloshora_label.pack(side='left', fill='x', anchor='w')
-    #     numerocicloshora_output.pack(side='left', padx=5)
-
-    #     groupfinalnpr2 = Frame(groupfinalnpr)
-    #     groupfinalnpr2.pack()
-    #     # Productividad
-    #     productividad_text = StringVar(groupfinalnpr2,'','prod')
-    #     productividad_label = Label(groupfinalnpr2, text='Productividad', font=my_font, pady=10, padx=10)
-    #     productividad_label.config(bg='white')
-    #     productividad_output = Label(groupfinalnpr2, textvariable=productividad_text, relief=RAISED, font=my_font)
-    #     productividad_output.config(bg='white')
-    #     productividad_label2 = Label(groupfinalnpr2, text='m3/h', font=my_font, pady=10, padx=10)
-    #     productividad_label2.config(bg='white')
-
-    #     productividad_label.pack(side='left', fill='x', anchor='w')
-    #     productividad_output.pack(side='left', padx=5)
-    #     productividad_label2.pack(side='left', fill='x', anchor='e')
-
-    #     groupfinalnpr3 = Frame(groupfinalnpr)
-    #     groupfinalnpr3.pack()
-    #     # Rendimiento
-    #     rendimiento_text = StringVar(groupfinalnpr3,'','rend')
-    #     rendimiento_label = Label(groupfinalnpr3, text='Rendimiento', font=my_font, pady=10, padx=10)
-    #     rendimiento_label.config(bg='white')
-    #     rendimiento_output = Label(groupfinalnpr3, textvariable=rendimiento_text, relief=RAISED, font=my_font)
-    #     rendimiento_output.config(bg='white')
-    #     rendimiento_label2 = Label(groupfinalnpr3, text='m3/d', font=my_font, pady=10, padx=10)
-    #     rendimiento_label2.config(bg='white')
-
-    #     rendimiento_label.pack(side='left', fill='x', anchor='w')
-    #     rendimiento_output.pack(side='left', padx=5)
-    #     rendimiento_label2.pack(side='left', fill='x', anchor='e')
-
-    #     resuldeexcava_label = Label(groupfinaltitle3, text='Resultados de la excavacion:', font=my_fontb, pady=10, padx=10)
-    #     resuldeexcava_label.config(bg='white')
-    #     resuldeexca_label.pack()
-
-    #     groupfinalvst1 = Frame(groupfinalvst)
-    #     groupfinalvst1.pack()
-    #     # Volumen
-    #     volumen_text = StringVar(groupfinalvst1,'','volumen')
-    #     volumen_label = Label(groupfinalvst1, text='Volumen', font=my_font, pady=10, padx=10)
-    #     volumen_label.config(bg='white')
-    #     volumen_output = Label(groupfinalvst1, textvariable=volumen_text, relief=RAISED, font=my_font)
-    #     volumen_output.config(bg='white')
-    #     volumen_label2 = Label(groupfinalvst1, text='m3', font=my_font, pady=10, padx=10)
-    #     volumen_label2.config(bg='white')
-
-    #     volumen_label.pack(side='left', fill='x', anchor='w')
-    #     volumen_output.pack(side='left', padx=5)
-    #     volumen_label2.pack(side='left', fill='x', anchor='e')
-
-    #     groupfinalvst2 = Frame(groupfinalvst)
-    #     groupfinalvst2.pack()
-    #     sobreexcava_text = StringVar(groupfinalvst2,'','sobreexcava')
-    #     sobreexcava_label = Label(groupfinalvst2, text='Sobreexcavacion', font=my_font, pady=10, padx=10)
-    #     sobreexcava_label.config(bg='white')
-    #     sobreexcava_output = Label(groupfinalvst2, textvariable=sobreexcava_text, relief=RAISED, font=my_font)
-    #     sobreexcava_output.config(bg='white')
-    #     sobreexcava_label2 = Label(groupfinalvst2, text='m3', font=my_font, pady=10, padx=10)
-    #     sobreexcava_label2.config(bg='white')
-
-    #     sobreexcava_label.pack(side='left', fill='x', anchor='w')
-    #     sobreexcava_output.pack(side='left', padx=5)
-    #     sobreexcava_label2.pack(side='left', fill='x', anchor='e')
-
-    #     groupfinalvst3 = Frame(groupfinalvst)
-    #     groupfinalvst3.pack()
-    #     tiempoalquiler_text = StringVar(groupfinalvst3,'','tiempoalquiler')
-    #     tiempoalquiler_label = Label(groupfinalvst3, text='Tiempo de alquiler', font=my_font, pady=10, padx=10)
-    #     tiempoalquiler_label.config(bg='white')
-    #     tiempoalquiler_output = Label(groupfinalvst3, textvariable=tiempoalquiler_text, relief=RAISED, font=my_font)
-    #     tiempoalquiler_output.config(bg='white')
-    #     tiempoalquiler_label2 = Label(groupfinalvst3, text='h', font=my_font, pady=10, padx=10)
-    #     tiempoalquiler_label2.config(bg='white')
-
-    #     tiempoalquiler_label.pack(side='left', fill='x', anchor='w')
-    #     tiempoalquiler_output.pack(side='left', padx=5)
-    #     tiempoalquiler_label2.pack(side='left', fill='x', anchor='e')
-
-    #     # Buttons
-    #     calcular_btn = Button(groupfinalbut, text='Calcular rendimiento', width=20, command=calcular_rend2, font=my_fonts)
-    #     calcular_btn.pack()
-
-    #     app.title('Rendimiento')
-    #     # app.maxsize(1000, 1000)
-
-    #     app.protocol("WM_DELETE_WINDOW", on_closingapp)
-    #     app.mainloop()
-        
     def calcular_datos():
         global varfac
 
         def calcular_rend():
+            global rendimiento
             global flag_ingresar_excavadora
 
             if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
@@ -646,6 +236,7 @@ def escoger_excavadora():
                     print(thisid)
                     promed = (51.3 + 75.37 + 263.18 + 84.86 + 116.23) / 5.0
                     rendimiento = (3600 * float(ingresardat_text.get()) * float(varfac) * float(0.7) * float(0.9)) / float(promed)
+                    visualizar_text.set(round(rendimiento, 2))
                     # volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
                     # sobreexcava = volumen*1.15
                     # tiempodecarga = float(db.fetchtiempocarga(thisid))
@@ -656,7 +247,9 @@ def escoger_excavadora():
                     # tiempoalquiler = sobreexcava/productividad
                     # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
                     # db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
-                    db.insert(myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+                    
+                    # db.insert(myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+                    
                     # volumen_text.set(round(volumen, 2))
                     # sobreexcava_text.set(round(sobreexcava, 2))
                     # tiempoalquiler_text.set(round(tiempoalquiler, 2))
@@ -667,7 +260,8 @@ def escoger_excavadora():
                     flag_ingresar_excavadora = 0
                     global flag1
                     flag1 = 1
-                    small_populate_list()
+                    # small_populate_list()
+                    
                 except ValueError:
                     flag_ingresar_excavadora = 1
                     messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
@@ -749,21 +343,20 @@ def escoger_excavadora():
 
         calcular_rend()
 
-    def on_closingselwin():
-        global flag_ingresar_excavadora
-        # if 'flag_ingresar_excavadora' in globals():
-        #     if flag_ingresar_excavadora == 1:
-        #         db.remove(thisid)
-        #         flag_ingresar_excavadora = 0
-        actualizar_lista()
-        mainwin.deiconify()
-        selwin.destroy()
+    # def on_closingselwin():
+    #     global flag_ingresar_excavadora
+    #     # if 'flag_ingresar_excavadora' in globals():
+    #     #     if flag_ingresar_excavadora == 1:
+    #     #         db.remove(thisid)
+    #     #         flag_ingresar_excavadora = 0
+    #     actualizar_lista()
+    #     mainwin.deiconify()
+    #     selwin.destroy()
 
     def comboclick1(event):
         if myCombo1.get() == "Hyundai Robex 200LC-9SB":
             imagemaq = Image.open('Hyundai_Robex_200LC-9SB.jpg')
             # imagemaqr = imagemaq.resize((150,150))
-
         elif myCombo1.get() == "Doosan DX225LCA":
             imagemaq = Image.open('Doosan_DX225LCA.jpg')
             
@@ -1008,165 +601,208 @@ def escoger_excavadora():
 
     global flag1
     flag1 = 1
-    groupcombo = Frame(selwin, background='white')
-    groupcombotop = Frame(groupcombo, background='white')
-    groupcombobot = Frame(groupcombo, background='white')
-    groupingresa = Frame(groupcombo, background='white')
-    groupcombo.pack()
-    groupcombotop.pack(side='top')
-    groupcombobot.pack()
-    groupingresa.pack(side='bottom')
+    # se cambio groupcombo de selwin a mainwin
+    # groupcombo = Frame(mainwin, background='white')
+    groupcombotop = Frame(nuevo_frame, background='white')
+    groupcombobot = Frame(nuevo_frame, background='white')
+    comboframe1 = Frame(nuevo_frame, background='white')
+    comboframe2 = Frame(nuevo_frame, background='white')
+    comboframe3 = Frame(nuevo_frame, background='white')
+    comboframe4 = Frame(nuevo_frame, background='white')
+    groupingresa = Frame(nuevo_frame, background='white')
+    # groupcombo.pack()
+    # groupcombo.pack_forget()
+    groupcombotop.pack(side='top', fill='x')
+    groupcombobot.pack(fill='x')
+    comboframe1.pack(fill='x')
+    comboframe2.pack(fill='x')
+    comboframe3.pack(fill='x')
+    comboframe4.pack(fill='x')
+    groupingresa.pack(side='bottom', fill='x')
     selex_label = Label(groupcombotop, text='Seleccionar Excavadora:', font=my_fontb, pady=10, padx=10)
-    selex_label.pack()
+    selex_label.pack(side='left')
+
+    spacer1 = Label(groupcombotop, width=10, bg='white')
+    spacer1.pack(side='left')
 
     myCombo1 = ttk.Combobox(groupcombotop, value=maqoptions, width=25, font = my_fonts)
     myCombo1.current()
     myCombo1.bind("<<ComboboxSelected>>", comboclick1)
-    myCombo1.pack()
+    myCombo1.pack(side='left')
 
     imagenexca = Label(groupcombotop, bg='white')
-    imagenexca.pack()
+    imagenexca.pack(side='left')
 
     selcu_label = Label(groupcombobot, text='Seleccionar cucharon:', font=my_fontb, pady=10, padx=10)
-    selcu_label.pack()
+    selcu_label.pack(side='left')
+
+    spacer2 = Label(groupcombobot, width=13, bg='white')
+    spacer2.pack(side='left')
 
     myCombo2 = ttk.Combobox(groupcombobot, width=25, font=my_fonts)
     myCombo2.current()
     myCombo2.bind("<<ComboboxSelected>>", comboclick2)
-    myCombo2.pack()
+    myCombo2.pack(side='left')
 
     imagenpala = Label(groupcombobot, bg='white')
-    imagenpala.pack()
+    imagenpala.pack(side='left')
 
-    ingresarclase_material = Label(groupingresa, text='Escoger clase de material:', font=my_fontb, pady=10, padx=10, bg='white')
-    ingresarclase_material.pack()
+    ingresarclase_material = Label(comboframe1, text='Escoger clase de material:', font=my_fontb, pady=10, padx=10, bg='white')
+    ingresarclase_material.pack(side='left')
 
-    myCombo3 = ttk.Combobox(groupingresa, value=materialoptions, width=25, font=my_fonts)
+    spacer3 = Label(comboframe1, width=8, bg='white')
+    spacer3.pack(side='left')
+
+    myCombo3 = ttk.Combobox(comboframe1, value=materialoptions, width=25, font=my_fonts)
     myCombo3.current()
     myCombo3.bind("<<ComboboxSelected>>", comboclick3)
-    myCombo3.pack()
+    myCombo3.pack(side='left')
 
-    ingresarestado_actual = Label(groupingresa, text='Escoger estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
-    ingresarestado_actual.pack()
+    ingresarestado_actual = Label(comboframe2, text='Escoger estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
+    ingresarestado_actual.pack(side='left')
 
-    myCombo4 = ttk.Combobox(groupingresa, value=estadooptions, width=25, font=my_fonts)
+    spacer4 = Label(comboframe2, width=13, bg='white')
+    spacer4.pack(side='left')
+
+    myCombo4 = ttk.Combobox(comboframe2, value=estadooptions, width=25, font=my_fonts)
     myCombo4.current()
     myCombo4.bind("<<ComboboxSelected>>")
-    myCombo4.pack()
+    myCombo4.pack(side='left')
 
-    ingresarestado_convertido = Label(groupingresa, text='Escoger estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
-    ingresarestado_convertido.pack()
+    ingresarestado_convertido = Label(comboframe3, text='Escoger estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
+    ingresarestado_convertido.pack(side='left')
 
-    myCombo5 = ttk.Combobox(groupingresa, value=convertidooptions, width=25, font=my_fonts)
+    spacer5 = Label(comboframe3, width=7, bg='white')
+    spacer5.pack(side='left')
+
+    myCombo5 = ttk.Combobox(comboframe3, value=convertidooptions, width=25, font=my_fonts)
     myCombo5.current()
     myCombo5.bind("<<ComboboxSelected>>")
-    myCombo5.pack()
+    myCombo5.pack(side='left')
 
-    ingresardat_label = Label(groupingresa, text='Ingresar capacidad del cucharon:', font=my_fontb, pady=10, padx=10)
-    ingresardat_label.pack()
+    ingresardat_label = Label(comboframe4, text='Ingresar capacidad del cucharon:', font=my_fontb, pady=10, padx=10)
+    ingresardat_label.pack(side='left')
 
-    ingresardat_text = StringVar(groupingresa, '', 'capacidadcucharon')
-    ingresardat_entry = Entry(groupingresa, textvariable=ingresardat_text, width=10, fon=my_font)
-    ingresardat_entry.pack(pady=10)
+    ingresardat_text = StringVar(comboframe4, '', 'capacidadcucharon')
+    ingresardat_entry = Entry(comboframe4, textvariable=ingresardat_text, width=10, fon=my_font)
+    ingresardat_entry.pack(pady=10, side='left')
 
-    # group1 = Frame(groupingresa, background='white')
-    # group1.pack(side='top', pady=5)
-    # excavacion_text = StringVar(group1,'','excavacion')
-    # excavacion_label = Label(group1, text='Excavacion', font=my_font, pady=10, padx=3)
-    # excavacion_entry = Entry(group1, textvariable=excavacion_text, width=10, font=my_font)
-    # excavacion_label2 = Label(group1, text='segundos', font=my_font, pady=10, padx=3)
-    # excavacion_label.pack(side='left', fill='x', anchor='w')
-    # excavacion_entry.pack(side='left', padx=5)
-    # excavacion_label2.pack(side='left', fill='x', anchor='e')
-
-    # group2 = Frame(groupingresa, background='white')
-    # group2.pack(side='top', pady=5)
-    # espacio2_label = Label(group2, text='', width=2, bg='white')
-    # espacio2_label.pack(side='left')
-    # balanceo_text = StringVar(group2,'','balanceo')
-    # balanceo_label = Label(group2, text='Balanceo', font=my_font, pady=10, padx=3)
-    # balanceo_entry = Entry(group2, textvariable=balanceo_text, width=10, font=my_font)
-    # balanceo_label2 = Label(group2, text='segundos', font=my_font, pady=10, padx=3)
-    # balanceo_label.pack(side='left', fill='x', anchor='w')
-    # balanceo_entry.pack(side='left', padx=5)
-    # balanceo_label2.pack(side='left', fill='x', anchor='e')
-
-    # group3 = Frame(groupingresa, background='white')
-    # group3.pack(side='top', pady=5)
-    # espacio3_label = Label(group3, text='', width=6, bg='white')
-    # espacio3_label.pack(side='left')
-    # carga_text = StringVar(group3,'','carga')
-    # carga_label = Label(group3, text='Carga', font=my_font, pady=10, padx=3)
-    # carga_entry = Entry(group3, textvariable=carga_text, width=10, font=my_font)
-    # carga_label2 = Label(group3, text='segundos', font=my_font, pady=10, padx=3)
-    # carga_label.pack(side='left', fill='x', anchor='w')
-    # carga_entry.pack(side='left', padx=5)
-    # carga_label2.pack(side='left', fill='x', anchor='e')
-
-    # ingresar datos escritos excavadora
-    # ingresarexca_btn = Button(groupingresa)
-    # ingresarexca_btn.pack()
-
-    escojer1_btn = Button(groupingresa, text='Ingresar excavacion', width=20, command=calcular_datos, font=my_fonts)
+    escojer1_btn = Button(groupingresa, text='Calcular', width=15, command=calcular_datos, font=my_fonts)
     # escojer1_btn.pack(side='top', anchor='center', pady=10)
-    escojer1_btn.pack(side='top',  pady=10)
+    escojer1_btn.pack(side='left',  pady=10)
     # escojer1_btn["state"] = "disabled"
+    visualizar_text = StringVar(groupingresa)
+    visualizar_label = Label(groupingresa, textvariable=visualizar_text, font=my_fontb, pady=10, padx=10, bg='white')
+    visualizar_label.pack(side='left')
+    grabar_btn = Button(groupingresa, text='Grabar', width=15, command=grabar_rend, font=my_fonts)
+    grabar_btn.pack(side='left',  pady=10)
 
-    selwin.protocol("WM_DELETE_WINDOW", on_closingselwin)
+    # selwin.protocol("WM_DELETE_WINDOW", on_closingselwin)
     selex_label.config(bg='white')
     selcu_label.config(bg='white')
     ingresardat_label.config(bg='white')
-    # excavacion_label.config(bg='white')
-    # excavacion_label2.config(bg='white')
-    # balanceo_label.config(bg='white')
-    # balanceo_label2.config(bg='white')
-    # carga_label.config(bg='white')
-    # carga_label2.config(bg='white')
-    selwin.configure(bg='white')
-    selwin.mainloop()
+    # selwin.configure(bg='white')
+    # selwin.mainloop()
 
-def eliminar_id():
-    # iniciar_btn["state"] = "disabled"
-    # detalles_btn["state"] = "disabled"
-    global thisid
-    global flag_mostrar_detalles
-    db.remove(thisid)
-    # thisid = 0
-    actualizar_lista()
-    # for row in db.fetch():
-    #     thisid = thisid + 1
-    print('flag')
-    print(flag_mostrar_detalles)
-    # if flag_mostrar_detalles == 0:
-    #     new_small_populate_list()
-    # else:
-    #     new_populate_list()
 
-# def mostrar_detalles():
-#     global flag_mostrar_detalles
-#     if flag_mostrar_detalles == 0:
-#         tree.pack_forget()
-#         # populate_list()
-#         tree2.pack()
-#         flag_mostrar_detalles = 1
-#     else:
-#         tree2.pack_forget()
-#         # small_populate_list()
-#         tree.pack()
-#         flag_mostrar_detalles = 0
-#     print('flag')
-#     print(flag_mostrar_detalles)
+# nuevos botones
 
-iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
+def inicio():
+    # imagendeinicio.pack()
+    ocultar_nuevo()
+    ocultar_registros()
+    ocultar_ayuda()
+    ocultar_formulas()
+    inicio_frame.pack()
 
-# detalles_btn = Button(table_frame_buttons, text='Detalles', width=7, command=mostrar_detalles, font=my_fonts)
+def ocultar_inicio():
+    # imagendeinicio.config(image=None)
+    # imagendeinicio.pack_forget()
+    inicio_frame.pack_forget()
 
+def nuevo():
+    ocultar_inicio()
+    ocultar_registros()
+    ocultar_ayuda()
+    ocultar_formulas()
+    nuevo_frame.pack()
+
+def ocultar_nuevo():
+    nuevo_frame.pack_forget()
+
+def registros():
+    # tree.pack(side='left', fill='both', expand=True)
+    # scrollbar.pack(side='right', fill='y')
+    ocultar_inicio()
+    ocultar_nuevo()
+    ocultar_ayuda()
+    ocultar_formulas()
+    registros_frame.pack()
+    eliminar_btn.pack(anchor='n', side='left', padx=5, pady=5)
+    dato_eliminar_entry.pack(anchor='n', side='left', padx=5, pady=5)
+
+def ocultar_registros():
+    # tree.pack_forget()
+    # scrollbar.pack_forget()
+    eliminar_btn.pack_forget()
+    dato_eliminar_entry.pack_forget()
+    registros_frame.pack_forget()
+    
+def formulas():
+    ocultar_inicio()
+    ocultar_nuevo()
+    ocultar_registros()
+    ocultar_ayuda()
+    print("Formulas")
+    formulas_frame.pack()
+
+def ocultar_formulas():
+    formulas_frame.pack_forget()
+
+def ayuda():
+    print("Ayuda")
+    ocultar_inicio()
+    ocultar_nuevo()
+    ocultar_registros()
+    ocultar_formulas()
+    ayuda_frame.pack()
+
+def ocultar_ayuda():
+    ayuda_frame.pack_forget()
+    
+def abrir_pdf():
+    ruta_pdf = os.path.abspath('manual.pdf')
+    os.startfile(ruta_pdf)
+
+# iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
 eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts)
+dato_eliminar_text = StringVar(table_frame_buttons, '', 'Datoaeliminar')
+dato_eliminar_entry = Entry(table_frame_buttons, textvariable=dato_eliminar_text, width=5, fon=my_font)
 
-iniciar_btn.pack(anchor='n', side='left', padx=5, pady=5)
-eliminar_btn.pack(anchor='n', side='right', padx=5, pady=5)
-# detalles_btn.pack(anchor='n', side='right', padx=5, pady=5)
+boton_pdf = Button(ayuda_frame, text='Abrir guia de usuario', command=abrir_pdf, font=my_fonts)
+boton_pdf.pack(padx=20, pady=20)
 
+inicio_btn = Button(table_frame_buttons, text='Inicio', width=7, command=inicio, font=my_fonts)
+nuevo_btn = Button(table_frame_buttons, text='Nuevo', width=7, command=nuevo, font=my_fonts)
+registros_btn = Button(table_frame_buttons, text='Registros', width=7, command=registros, font=my_fonts)
+formulas_btn = Button(table_frame_buttons, text='Formulas', width=7, command=formulas, font=my_fonts)
+ayuda_btn = Button(table_frame_buttons, text='Ayuda', width=7, command=ayuda, font=my_fonts)
+
+# iniciar_btn.pack(anchor='n', side='left', padx=5, pady=5)
+
+
+inicio_btn.pack(anchor='n', side='left', padx=5, pady=5)
+nuevo_btn.pack(anchor='n', side='left', padx=5, pady=5)
+registros_btn.pack(anchor='n', side='left', padx=5, pady=5)
+formulas_btn.pack(anchor='n', side='left', padx=5, pady=5)
+ayuda_btn.pack(anchor='n', side='left', padx=5, pady=5)
+eliminar_btn.pack(anchor='n', side='left', padx=5, pady=5)
+dato_eliminar_entry.pack(anchor='n', side='left', padx=5, pady=5)
+eliminar_btn.pack_forget()
+dato_eliminar_entry.pack_forget()
+
+# configurar_imagen()
+configurar_nuevo()
 small_populate_list()
 # populate_list()
 

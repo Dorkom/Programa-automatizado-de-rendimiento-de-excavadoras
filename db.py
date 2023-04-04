@@ -43,6 +43,14 @@ class Database:
     def remove(self, id):
         self.cur.execute("DELETE FROM maquina WHERE id=?", (id,))
         self.conn.commit()
+        self.actualizar_id()
+
+    def actualizar_id(self):
+        self.cur.execute("SELECT * FROM maquina")
+        rows = self.cur.fetchall()
+        for i, row in enumerate(rows):
+            self.cur.execute("UPDATE maquina SET id = ? WHERE id = ?", (i+1, row[0]))
+        self.conn.commit()
 
     def update(self, id, excavadora, cuchara, material, eactual, econvertido, capacidad, rendimiento):
         self.cur.execute("UPDATE maquina SET excavadora = ?, cuchara = ?, material = ?, eactual = ?, econvertido = ?, capacidad = ?, rendimiento = ? WHERE id = ?", (excavadora, cuchara, material, eactual, econvertido, capacidad, rendimiento, id))
