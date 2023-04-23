@@ -12,6 +12,16 @@ class Database:
         self.cur.execute("SELECT * FROM maquina")
         rows = self.cur.fetchall()
         return rows
+    
+    def fetch_by_id(self, id):
+        self.cur.execute("SELECT * FROM maquina WHERE id=?", (id,))
+        row = self.cur.fetchone()
+        return row
+    
+    def fetch_eactual(self, id):
+        self.cur.execute("SELECT eactual FROM maquina WHERE id=?", (id,))
+        result = self.cur.fetchone()
+        return result[0] if result else None
 
     # def smallfetch(self):
     #     self.cur.execute("SELECT id, excavadora, cuchara, productividad, rendimiento FROM maquina")
