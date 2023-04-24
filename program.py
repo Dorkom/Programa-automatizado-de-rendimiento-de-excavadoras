@@ -78,8 +78,8 @@ nuevo_frame.config(bg='white')
 registros_frame = Frame(mainwin, padx = 3)
 registros_frame.config(bg='white')
 
-ayuda_frame = Frame(mainwin, padx = 3)
-ayuda_frame.config(bg='white')
+# ayuda_frame = Frame(mainwin, padx = 3)
+# ayuda_frame.config(bg='white')
 
 formulas_frame = Frame(mainwin, padx = 3)
 formulas_frame.config(bg='white')
@@ -92,13 +92,13 @@ table_frame.pack(side='bottom')
 inicio_frame.pack(side='bottom')
 nuevo_frame.pack(side='bottom')
 registros_frame.pack(side='bottom')
-ayuda_frame.pack(side='bottom')
+# ayuda_frame.pack(side='bottom')
 formulas_frame.pack(side='bottom')
 comparar_frame.pack(side='bottom')
 
 nuevo_frame.pack_forget()
 registros_frame.pack_forget()
-ayuda_frame.pack_forget()
+# ayuda_frame.pack_forget()
 formulas_frame.pack_forget()
 comparar_frame.pack_forget()
 
@@ -167,47 +167,47 @@ imagenexca = Label(groupcombotop, bg='white')
 
 
 # todo sobre comparar
-frame1 = Frame(comparar_frame, background='white')
-frame2 = Frame(comparar_frame, background='white')
-frame3 = Frame(comparar_frame, background='white')
-frame4 = Frame(comparar_frame, background='white')
-frame5 = Frame(comparar_frame, background='white')
-frame6 = Frame(comparar_frame, background='white')
-frame7 = Frame(comparar_frame, background='white')
-frame8 = Frame(comparar_frame, background='white')
+# frame1 = Frame(comparar_frame, background='white')
+# frame2 = Frame(comparar_frame, background='white')
+# frame3 = Frame(comparar_frame, background='white')
+# frame4 = Frame(comparar_frame, background='white')
+# frame5 = Frame(comparar_frame, background='white')
+# frame6 = Frame(comparar_frame, background='white')
+# frame7 = Frame(comparar_frame, background='white')
+# frame8 = Frame(comparar_frame, background='white')
 
-id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer1 = Label(frame1, width=15, bg='white')
-id_label2 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-id_label3 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer2 = Label(frame2, width=6, bg='white')
-excavadora_label2 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-excavadora_label3 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer3 = Label(frame3, width=9, bg='white')
-cuchara_label2 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-cuchara_label3 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer4 = Label(frame4, width=10, bg='white')
-material_label2 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-material_label3 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer5 = Label(frame5, width=4, bg='white')
-eactual_label2 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-eactual_label3 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer6 = Label(frame6, width=0, bg='white')
-econvertido_label2 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-econvertido_label3 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer7 = Label(frame7, width=6, bg='white')
-capacidad_label2 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-capacidad_label3 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-spacer8 = Label(frame8, width=5, bg='white')
-rendimiento_label2 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-rendimiento_label3 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer1 = Label(frame1, width=15, bg='white')
+# id_label2 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# id_label3 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer2 = Label(frame2, width=6, bg='white')
+# excavadora_label2 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# excavadora_label3 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer3 = Label(frame3, width=9, bg='white')
+# cuchara_label2 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# cuchara_label3 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer4 = Label(frame4, width=10, bg='white')
+# material_label2 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# material_label3 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer5 = Label(frame5, width=4, bg='white')
+# eactual_label2 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# eactual_label3 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer6 = Label(frame6, width=0, bg='white')
+# econvertido_label2 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# econvertido_label3 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer7 = Label(frame7, width=6, bg='white')
+# capacidad_label2 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# capacidad_label3 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# spacer8 = Label(frame8, width=5, bg='white')
+# rendimiento_label2 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+# rendimiento_label3 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
 
 def comboclick3(event):
     if myCombo3.get() == "Arena":
@@ -247,11 +247,9 @@ def comboclick1(event):
         imagemaqr = imagemaq.resize((150,150))
 
         photoimagemaq = ImageTk.PhotoImage(imagemaqr)
-        # imagenexca = Label(groupcombotop, image=photoimagemaq)
+
         imagenexca.config(image=photoimagemaq)
         imagenexca.image = photoimagemaq
-        # imagenexca.grid(row=2, column=0)
-        # imagenexca.pack()
 
         if myCombo1.get() == "Hyundai Robex 200LC-9SB":
             cuchoptions = [
@@ -525,162 +523,221 @@ def comparar_id():
         print('id2:',capacidad2)
         print('id2:',rendimiento2)
 
-        # frame1 = Frame(comparar_frame, background='white')
-        # frame2 = Frame(comparar_frame, background='white')
-        # frame3 = Frame(comparar_frame, background='white')
-        # frame4 = Frame(comparar_frame, background='white')
-        # frame5 = Frame(comparar_frame, background='white')
-        # frame6 = Frame(comparar_frame, background='white')
-        # frame7 = Frame(comparar_frame, background='white')
-        # frame8 = Frame(comparar_frame, background='white')
+        # # frame1 = Frame(comparar_frame, background='white')
+        # # frame2 = Frame(comparar_frame, background='white')
+        # # frame3 = Frame(comparar_frame, background='white')
+        # # frame4 = Frame(comparar_frame, background='white')
+        # # frame5 = Frame(comparar_frame, background='white')
+        # # frame6 = Frame(comparar_frame, background='white')
+        # # frame7 = Frame(comparar_frame, background='white')
+        # # frame8 = Frame(comparar_frame, background='white')
 
-        # textvariable11 = StringVar(frame1)
-        # textvariable12 = StringVar(frame1)
-        # textvariable21 = StringVar(frame2)
-        # textvariable22 = StringVar(frame2)
-        # textvariable31 = StringVar(frame3)
-        # textvariable32 = StringVar(frame3)
-        # textvariable41 = StringVar(frame4)
-        # textvariable42 = StringVar(frame4)
-        # textvariable51 = StringVar(frame5)
-        # textvariable52 = StringVar(frame5)
-        # textvariable61 = StringVar(frame6)
-        # textvariable62 = StringVar(frame6)
-        # textvariable71 = StringVar(frame7)
-        # textvariable72 = StringVar(frame7)
-        # textvariable81 = StringVar(frame8)
-        # textvariable82 = StringVar(frame8)
+        # # textvariable11 = StringVar(frame1)
+        # # textvariable12 = StringVar(frame1)
+        # # textvariable21 = StringVar(frame2)
+        # # textvariable22 = StringVar(frame2)
+        # # textvariable31 = StringVar(frame3)
+        # # textvariable32 = StringVar(frame3)
+        # # textvariable41 = StringVar(frame4)
+        # # textvariable42 = StringVar(frame4)
+        # # textvariable51 = StringVar(frame5)
+        # # textvariable52 = StringVar(frame5)
+        # # textvariable61 = StringVar(frame6)
+        # # textvariable62 = StringVar(frame6)
+        # # textvariable71 = StringVar(frame7)
+        # # textvariable72 = StringVar(frame7)
+        # # textvariable81 = StringVar(frame8)
+        # # textvariable82 = StringVar(frame8)
 
-        textvariable11 = ideditar1
-        textvariable12 = ideditar2
-        textvariable21 = excavadora1
-        textvariable22 = excavadora2
-        textvariable31 = cuchara1
-        textvariable32 = cuchara2
-        textvariable41 = material1
-        textvariable42 = material2
-        textvariable51 = eactual1
-        textvariable52 = eactual2
-        textvariable61 = econvertido1
-        textvariable62 = econvertido2
-        textvariable71 = capacidad1
-        textvariable72 = capacidad2
-        textvariable81 = rendimiento1
-        textvariable82 = rendimiento2
-
-        
-        frame1.pack(fill='x')
-        # id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white')
-        id_label1.pack(side='left')
-
-        # spacer1 = Label(frame1, width=15, bg='white')
-        spacer1.pack(side='left')
-        
-        id_label2.config(text=textvariable11)
-        id_label2.pack(side='left')
-        
-        id_label3.config(text=textvariable12)
-        id_label3.pack(side='left')
+        # textvariable11 = ideditar1
+        # textvariable12 = ideditar2
+        # textvariable21 = excavadora1
+        # textvariable22 = excavadora2
+        # textvariable31 = cuchara1
+        # textvariable32 = cuchara2
+        # textvariable41 = material1
+        # textvariable42 = material2
+        # textvariable51 = eactual1
+        # textvariable52 = eactual2
+        # textvariable61 = econvertido1
+        # textvariable62 = econvertido2
+        # textvariable71 = capacidad1
+        # textvariable72 = capacidad2
+        # textvariable81 = rendimiento1
+        # textvariable82 = rendimiento2
 
         
-        frame2.pack(fill='x')
-        # excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white')
-        excavadora_label1.pack(side='left')
+        # frame1.pack(fill='x')
+        # # id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white')
+        # id_label1.pack(side='left')
 
-        # spacer2 = Label(frame2, width=6, bg='white')
-        spacer2.pack(side='left')
+        # # spacer1 = Label(frame1, width=15, bg='white')
+        # spacer1.pack(side='left')
         
-        excavadora_label2.config(text=textvariable21)
-        excavadora_label2.pack(side='left')
+        # id_label2.config(text=textvariable11)
+        # id_label2.pack(side='left')
         
-        excavadora_label3.config(text=textvariable22)
-        excavadora_label3.pack(side='left')
-
-        
-        frame3.pack(fill='x')
-        # cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white')
-        cuchara_label1.pack(side='left')
-
-        # spacer3 = Label(frame3, width=9, bg='white')
-        spacer3.pack(side='left')
-        
-        cuchara_label2.config(text=textvariable31)
-        cuchara_label2.pack(side='left')
-        
-        cuchara_label3.config(text=textvariable32)
-        cuchara_label3.pack(side='left')
+        # id_label3.config(text=textvariable12)
+        # id_label3.pack(side='left')
 
         
-        frame4.pack(fill='x')
-        # material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white')
-        material_label1.pack(side='left')
+        # frame2.pack(fill='x')
+        # # excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white')
+        # excavadora_label1.pack(side='left')
 
-        # spacer4 = Label(frame4, width=10, bg='white')
-        spacer4.pack(side='left')
+        # # spacer2 = Label(frame2, width=6, bg='white')
+        # spacer2.pack(side='left')
         
-        material_label2.config(text=textvariable41)
-        material_label2.pack(side='left')
+        # excavadora_label2.config(text=textvariable21)
+        # excavadora_label2.pack(side='left')
         
-        material_label3.config(text=textvariable42)
-        material_label3.pack(side='left')
-
-        
-        frame5.pack(fill='x')
-        # eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
-        eactual_label1.pack(side='left')
-
-        # spacer5 = Label(frame5, width=4, bg='white')
-        spacer5.pack(side='left')
-        
-        eactual_label2.config(text=textvariable51)
-        eactual_label2.pack(side='left')
-        
-        eactual_label3.config(text=textvariable52)
-        eactual_label3.pack(side='left')
+        # excavadora_label3.config(text=textvariable22)
+        # excavadora_label3.pack(side='left')
 
         
-        frame6.pack(fill='x')
-        # econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
-        econvertido_label1.pack(side='left')
+        # frame3.pack(fill='x')
+        # # cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white')
+        # cuchara_label1.pack(side='left')
 
-        # spacer6 = Label(frame6, width=0, bg='white')
-        spacer6.pack(side='left')
+        # # spacer3 = Label(frame3, width=9, bg='white')
+        # spacer3.pack(side='left')
         
-        econvertido_label2.config(text=textvariable61)
-        econvertido_label2.pack(side='left')
+        # cuchara_label2.config(text=textvariable31)
+        # cuchara_label2.pack(side='left')
         
-        econvertido_label3.config(text=textvariable62)
-        econvertido_label3.pack(side='left')
-
-        
-        frame7.pack(fill='x')
-        # capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white')
-        capacidad_label1.pack(side='left')
-
-        # spacer7 = Label(frame7, width=6, bg='white')
-        spacer7.pack(side='left')
-        
-        capacidad_label2.config(text=textvariable71)
-        capacidad_label2.pack(side='left')
-        
-        capacidad_label3.config(text=textvariable72)
-        capacidad_label3.pack(side='left')
+        # cuchara_label3.config(text=textvariable32)
+        # cuchara_label3.pack(side='left')
 
         
-        frame8.pack(fill='x')
-        # rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white')
-        rendimiento_label1.pack(side='left')
+        # frame4.pack(fill='x')
+        # # material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white')
+        # material_label1.pack(side='left')
 
-        # spacer8 = Label(frame8, width=5, bg='white')
-        spacer8.pack(side='left')
+        # # spacer4 = Label(frame4, width=10, bg='white')
+        # spacer4.pack(side='left')
         
-        rendimiento_label2.config(text=textvariable81)
-        rendimiento_label2.pack(side='left')
+        # material_label2.config(text=textvariable41)
+        # material_label2.pack(side='left')
         
-        rendimiento_label3.config(text=textvariable82)
-        rendimiento_label3.pack(side='left')
+        # material_label3.config(text=textvariable42)
+        # material_label3.pack(side='left')
 
+        
+        # frame5.pack(fill='x')
+        # # eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
+        # eactual_label1.pack(side='left')
 
+        # # spacer5 = Label(frame5, width=4, bg='white')
+        # spacer5.pack(side='left')
+        
+        # eactual_label2.config(text=textvariable51)
+        # eactual_label2.pack(side='left')
+        
+        # eactual_label3.config(text=textvariable52)
+        # eactual_label3.pack(side='left')
+
+        
+        # frame6.pack(fill='x')
+        # # econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
+        # econvertido_label1.pack(side='left')
+
+        # # spacer6 = Label(frame6, width=0, bg='white')
+        # spacer6.pack(side='left')
+        
+        # econvertido_label2.config(text=textvariable61)
+        # econvertido_label2.pack(side='left')
+        
+        # econvertido_label3.config(text=textvariable62)
+        # econvertido_label3.pack(side='left')
+
+        
+        # frame7.pack(fill='x')
+        # # capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white')
+        # capacidad_label1.pack(side='left')
+
+        # # spacer7 = Label(frame7, width=6, bg='white')
+        # spacer7.pack(side='left')
+        
+        # capacidad_label2.config(text=textvariable71)
+        # capacidad_label2.pack(side='left')
+        
+        # capacidad_label3.config(text=textvariable72)
+        # capacidad_label3.pack(side='left')
+
+        
+        # frame8.pack(fill='x')
+        # # rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white')
+        # rendimiento_label1.pack(side='left')
+
+        # # spacer8 = Label(frame8, width=5, bg='white')
+        # spacer8.pack(side='left')
+        
+        # rendimiento_label2.config(text=textvariable81)
+        # rendimiento_label2.pack(side='left')
+        
+        # rendimiento_label3.config(text=textvariable82)
+        # rendimiento_label3.pack(side='left')
+
+        # Crear los labels para los nombres de los datos
+        nombres_datos = ['id', 'excavadora', 'cuchara', 'material', 'eactual', 'econvertido', 'capacidad', 'rendimiento']
+        for i, nombre in enumerate(nombres_datos):
+            nombre_label = Label(comparar_frame, text=nombre, font=my_fontb, bg='white', relief='solid', borderwidth=1)
+            nombre_label.grid(row=i, column=0, padx=5, pady=5, sticky='w')
+
+        # Datos del primer grupo
+        if excavadora1 == "Hyundai Robex 200LC-9SB":
+            imagemaq1 = Image.open('Hyundai_Robex_200LC-9SB.jpg')
+        elif excavadora1 == "Doosan DX225LCA":
+            imagemaq1 = Image.open('Doosan_DX225LCA.jpg')
+        imagemaqr1 = imagemaq1.resize((150,150))
+        photoimagemaq1 = ImageTk.PhotoImage(imagemaqr1)
+
+        if excavadora2 == "Hyundai Robex 200LC-9SB":
+            imagemaq2 = Image.open('Hyundai_Robex_200LC-9SB.jpg')
+        elif excavadora2 == "Doosan DX225LCA":
+            imagemaq2 = Image.open('Doosan_DX225LCA.jpg')
+        imagemaqr2 = imagemaq2.resize((150,150))
+        photoimagemaq2 = ImageTk.PhotoImage(imagemaqr2)
+
+        dato1_label = Label(comparar_frame, text=ideditar1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_label.grid(row=0, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe2 = Label(comparar_frame, text=excavadora1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe2.grid(row=1, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe3 = Label(comparar_frame, text=cuchara1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe3.grid(row=2, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe4 = Label(comparar_frame, text=material1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe4.grid(row=3, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe5 = Label(comparar_frame, text=eactual1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe5.grid(row=4, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe6 = Label(comparar_frame, text=econvertido1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe6.grid(row=5, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe7 = Label(comparar_frame, text=capacidad1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe7.grid(row=6, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe8 = Label(comparar_frame, text=rendimiento1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe8.grid(row=7, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe9 = Label(comparar_frame, image=photoimagemaq1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe9.grid(row=8, column=1, padx=5, pady=5, sticky='w')
+        dato1_labe9.image = photoimagemaq1
+
+        dato2_label = Label(comparar_frame, text=ideditar2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_label.grid(row=0, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe2 = Label(comparar_frame, text=excavadora2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe2.grid(row=1, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe3 = Label(comparar_frame, text=cuchara2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe3.grid(row=2, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe4 = Label(comparar_frame, text=material2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe4.grid(row=3, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe5 = Label(comparar_frame, text=eactual2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe5.grid(row=4, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe6 = Label(comparar_frame, text=econvertido2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe6.grid(row=5, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe7 = Label(comparar_frame, text=capacidad2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe7.grid(row=6, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe8 = Label(comparar_frame, text=rendimiento2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe8.grid(row=7, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe9 = Label(comparar_frame, image=photoimagemaq2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe9.grid(row=8, column=2, padx=5, pady=5, sticky='w')
+        dato2_labe9.image = photoimagemaq2
 
         comparar()
 
