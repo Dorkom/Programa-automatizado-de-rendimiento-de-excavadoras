@@ -110,7 +110,6 @@ scrollbar.pack(side='right', fill='y')
 # tree.pack_forget()
 # scrollbar.pack_forget()
 
-
 # creacion de la imagen de inicio
 imageinicio = Image.open('imageninicio.jpg')
 imageinicioqr = imageinicio.resize((450,350))
@@ -133,6 +132,8 @@ comboframe2 = Frame(nuevo_frame, background='white')
 comboframe3 = Frame(nuevo_frame, background='white')
 comboframe4 = Frame(nuevo_frame, background='white')
 comboframe5 = Frame(nuevo_frame, background='white')
+# simbolo metros cubicos
+medida1 = Label(comboframe5, text='m³/h', width=4, bg='white', font=my_font)
 groupingresa = Frame(nuevo_frame, background='white')
 groupingresa2 = Frame(nuevo_frame, background='white')
 maqoptions = [
@@ -162,6 +163,52 @@ ingresardat_entry = Entry(comboframe4, textvariable=ingresardat_text, width=10, 
 
 imagenpala = Label(groupcombobot, bg='white')
 imagenexca = Label(groupcombotop, bg='white')
+
+
+
+# todo sobre comparar
+frame1 = Frame(comparar_frame, background='white')
+frame2 = Frame(comparar_frame, background='white')
+frame3 = Frame(comparar_frame, background='white')
+frame4 = Frame(comparar_frame, background='white')
+frame5 = Frame(comparar_frame, background='white')
+frame6 = Frame(comparar_frame, background='white')
+frame7 = Frame(comparar_frame, background='white')
+frame8 = Frame(comparar_frame, background='white')
+
+id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer1 = Label(frame1, width=15, bg='white')
+id_label2 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+id_label3 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer2 = Label(frame2, width=6, bg='white')
+excavadora_label2 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+excavadora_label3 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer3 = Label(frame3, width=9, bg='white')
+cuchara_label2 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+cuchara_label3 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer4 = Label(frame4, width=10, bg='white')
+material_label2 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+material_label3 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer5 = Label(frame5, width=4, bg='white')
+eactual_label2 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+eactual_label3 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer6 = Label(frame6, width=0, bg='white')
+econvertido_label2 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+econvertido_label3 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer7 = Label(frame7, width=6, bg='white')
+capacidad_label2 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+capacidad_label3 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+spacer8 = Label(frame8, width=5, bg='white')
+rendimiento_label2 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+rendimiento_label3 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
+
 def comboclick3(event):
     if myCombo3.get() == "Arena":
         estadooptions = [
@@ -431,6 +478,24 @@ def editar_id():
     nuevo()
 
 def comparar_id():
+
+    global textvariable11
+    global textvariable12
+    global textvariable21
+    global textvariable22
+    global textvariable31
+    global textvariable32
+    global textvariable41
+    global textvariable42
+    global textvariable51
+    global textvariable52
+    global textvariable61
+    global textvariable62
+    global textvariable71
+    global textvariable72
+    global textvariable81
+    global textvariable82
+
     selection = tree.selection()
     if len(selection) == 2:
         ideditar1 = tree.item(selection[0])['values'][0]
@@ -460,31 +525,31 @@ def comparar_id():
         print('id2:',capacidad2)
         print('id2:',rendimiento2)
 
-        frame1 = Frame(comparar_frame, background='white')
-        frame2 = Frame(comparar_frame, background='white')
-        frame3 = Frame(comparar_frame, background='white')
-        frame4 = Frame(comparar_frame, background='white')
-        frame5 = Frame(comparar_frame, background='white')
-        frame6 = Frame(comparar_frame, background='white')
-        frame7 = Frame(comparar_frame, background='white')
-        frame8 = Frame(comparar_frame, background='white')
+        # frame1 = Frame(comparar_frame, background='white')
+        # frame2 = Frame(comparar_frame, background='white')
+        # frame3 = Frame(comparar_frame, background='white')
+        # frame4 = Frame(comparar_frame, background='white')
+        # frame5 = Frame(comparar_frame, background='white')
+        # frame6 = Frame(comparar_frame, background='white')
+        # frame7 = Frame(comparar_frame, background='white')
+        # frame8 = Frame(comparar_frame, background='white')
 
-        textvariable11 = StringVar(frame1)
-        textvariable12 = StringVar(frame1)
-        textvariable21 = StringVar(frame2)
-        textvariable22 = StringVar(frame2)
-        textvariable31 = StringVar(frame3)
-        textvariable32 = StringVar(frame3)
-        textvariable41 = StringVar(frame4)
-        textvariable42 = StringVar(frame4)
-        textvariable51 = StringVar(frame5)
-        textvariable52 = StringVar(frame5)
-        textvariable61 = StringVar(frame6)
-        textvariable62 = StringVar(frame6)
-        textvariable71 = StringVar(frame7)
-        textvariable72 = StringVar(frame7)
-        textvariable81 = StringVar(frame8)
-        textvariable82 = StringVar(frame8)
+        # textvariable11 = StringVar(frame1)
+        # textvariable12 = StringVar(frame1)
+        # textvariable21 = StringVar(frame2)
+        # textvariable22 = StringVar(frame2)
+        # textvariable31 = StringVar(frame3)
+        # textvariable32 = StringVar(frame3)
+        # textvariable41 = StringVar(frame4)
+        # textvariable42 = StringVar(frame4)
+        # textvariable51 = StringVar(frame5)
+        # textvariable52 = StringVar(frame5)
+        # textvariable61 = StringVar(frame6)
+        # textvariable62 = StringVar(frame6)
+        # textvariable71 = StringVar(frame7)
+        # textvariable72 = StringVar(frame7)
+        # textvariable81 = StringVar(frame8)
+        # textvariable82 = StringVar(frame8)
 
         textvariable11 = ideditar1
         textvariable12 = ideditar2
@@ -505,90 +570,114 @@ def comparar_id():
 
         
         frame1.pack(fill='x')
-        id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white')
+        # id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white')
         id_label1.pack(side='left')
+
+        # spacer1 = Label(frame1, width=15, bg='white')
+        spacer1.pack(side='left')
         
-        id_label2 = Label(frame1, text=textvariable11, font=my_fontb, pady=10, padx=10, bg='white')
+        id_label2.config(text=textvariable11)
         id_label2.pack(side='left')
         
-        id_label3 = Label(frame1, text=textvariable12, font=my_fontb, pady=10, padx=10, bg='white')
+        id_label3.config(text=textvariable12)
         id_label3.pack(side='left')
 
         
         frame2.pack(fill='x')
-        excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white')
+        # excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white')
         excavadora_label1.pack(side='left')
+
+        # spacer2 = Label(frame2, width=6, bg='white')
+        spacer2.pack(side='left')
         
-        excavadora_label2 = Label(frame2, text=textvariable21, font=my_fontb, pady=10, padx=10, bg='white')
+        excavadora_label2.config(text=textvariable21)
         excavadora_label2.pack(side='left')
         
-        excavadora_label3 = Label(frame2, text=textvariable22, font=my_fontb, pady=10, padx=10, bg='white')
+        excavadora_label3.config(text=textvariable22)
         excavadora_label3.pack(side='left')
 
         
         frame3.pack(fill='x')
-        cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white')
+        # cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white')
         cuchara_label1.pack(side='left')
+
+        # spacer3 = Label(frame3, width=9, bg='white')
+        spacer3.pack(side='left')
         
-        cuchara_label2 = Label(frame3, text=textvariable31, font=my_fontb, pady=10, padx=10, bg='white')
+        cuchara_label2.config(text=textvariable31)
         cuchara_label2.pack(side='left')
         
-        cuchara_label3 = Label(frame3, text=textvariable32, font=my_fontb, pady=10, padx=10, bg='white')
+        cuchara_label3.config(text=textvariable32)
         cuchara_label3.pack(side='left')
 
         
         frame4.pack(fill='x')
-        material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white')
+        # material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white')
         material_label1.pack(side='left')
+
+        # spacer4 = Label(frame4, width=10, bg='white')
+        spacer4.pack(side='left')
         
-        material_label2 = Label(frame4, text=textvariable41, font=my_fontb, pady=10, padx=10, bg='white')
+        material_label2.config(text=textvariable41)
         material_label2.pack(side='left')
         
-        material_label3 = Label(frame4, text=textvariable42, font=my_fontb, pady=10, padx=10, bg='white')
+        material_label3.config(text=textvariable42)
         material_label3.pack(side='left')
 
         
         frame5.pack(fill='x')
-        eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
+        # eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white')
         eactual_label1.pack(side='left')
+
+        # spacer5 = Label(frame5, width=4, bg='white')
+        spacer5.pack(side='left')
         
-        eactual_label2 = Label(frame5, text=textvariable51, font=my_fontb, pady=10, padx=10, bg='white')
+        eactual_label2.config(text=textvariable51)
         eactual_label2.pack(side='left')
         
-        eactual_label3 = Label(frame5, text=textvariable52, font=my_fontb, pady=10, padx=10, bg='white')
+        eactual_label3.config(text=textvariable52)
         eactual_label3.pack(side='left')
 
         
         frame6.pack(fill='x')
-        econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
+        # econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white')
         econvertido_label1.pack(side='left')
+
+        # spacer6 = Label(frame6, width=0, bg='white')
+        spacer6.pack(side='left')
         
-        econvertido_label2 = Label(frame6, text=textvariable61, font=my_fontb, pady=10, padx=10, bg='white')
+        econvertido_label2.config(text=textvariable61)
         econvertido_label2.pack(side='left')
         
-        econvertido_label3 = Label(frame6, text=textvariable62, font=my_fontb, pady=10, padx=10, bg='white')
+        econvertido_label3.config(text=textvariable62)
         econvertido_label3.pack(side='left')
 
         
         frame7.pack(fill='x')
-        capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white')
+        # capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white')
         capacidad_label1.pack(side='left')
+
+        # spacer7 = Label(frame7, width=6, bg='white')
+        spacer7.pack(side='left')
         
-        capacidad_label2 = Label(frame7, text=textvariable71, font=my_fontb, pady=10, padx=10, bg='white')
+        capacidad_label2.config(text=textvariable71)
         capacidad_label2.pack(side='left')
         
-        capacidad_label3 = Label(frame7, text=textvariable72, font=my_fontb, pady=10, padx=10, bg='white')
+        capacidad_label3.config(text=textvariable72)
         capacidad_label3.pack(side='left')
 
         
         frame8.pack(fill='x')
-        rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white')
+        # rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white')
         rendimiento_label1.pack(side='left')
+
+        # spacer8 = Label(frame8, width=5, bg='white')
+        spacer8.pack(side='left')
         
-        rendimiento_label2 = Label(frame8, text=textvariable81, font=my_fontb, pady=10, padx=10, bg='white')
+        rendimiento_label2.config(text=textvariable81)
         rendimiento_label2.pack(side='left')
         
-        rendimiento_label3 = Label(frame8, text=textvariable82, font=my_fontb, pady=10, padx=10, bg='white')
+        rendimiento_label3.config(text=textvariable82)
         rendimiento_label3.pack(side='left')
 
 
@@ -623,6 +712,7 @@ def configurar_nuevo():
 
     def calcular_datos():
         global varfac
+        medida1.pack(side='left')
 
         def calcular_rend():
             global rendimiento
@@ -1080,10 +1170,10 @@ def configurar_nuevo():
     comboframe5.pack(fill='x')
     groupingresa.pack(side='bottom', fill='x')
     groupingresa2.pack(side='left', fill='x')
-    selex_label = Label(groupcombotop, text='Seleccionaar modelo\nde excavadora:', font=my_fontb, pady=10, padx=10)
+    selex_label = Label(groupcombotop, text='Seleccionar modelo\nde excavadora:', font=my_fontb, pady=10, padx=10)
     selex_label.pack(side='left')
 
-    spacer1 = Label(groupcombotop, width=8, bg='white')
+    spacer1 = Label(groupcombotop, width=9, bg='white')
     spacer1.pack(side='left')
 
     # myCombo1 = ttk.Combobox(groupcombotop, value=maqoptions, width=25, font = my_fonts)
@@ -1094,7 +1184,7 @@ def configurar_nuevo():
     # imagenexca = Label(groupcombotop, bg='white')
     imagenexca.pack(side='left')
 
-    selcu_label = Label(groupcombobot, text='Seleccionar tipo\nde cucharon:', font=my_fontb, pady=10, padx=10)
+    selcu_label = Label(groupcombobot, text='Seleccionar tipo\nde cucharón:', font=my_fontb, pady=10, padx=10)
     selcu_label.pack(side='left')
 
     spacer2 = Label(groupcombobot, width=13, bg='white')
@@ -1141,7 +1231,7 @@ def configurar_nuevo():
     myCombo5.bind("<<ComboboxSelected>>")
     myCombo5.pack(side='left')
 
-    ingresardat_label = Label(comboframe4, text='Capacidad de cucharon:', font=my_fontb, pady=10, padx=10)
+    ingresardat_label = Label(comboframe4, text='Capacidad de cucharón:', font=my_fontb, pady=10, padx=10)
     ingresardat_label.pack(side='left')
 
     spacer6 = Label(comboframe4, width=5, bg='white')
@@ -1158,19 +1248,19 @@ def configurar_nuevo():
     visualizar_label = Label(comboframe5, textvariable=visualizar_text, font=my_fontb, pady=10, padx=10, bg='white')
     visualizar_label.pack(side='left')
 
-    medida1 = Label(comboframe5, text='m³/h', width=4, bg='white', font=my_font)
-    medida1.pack(side='left')
+    # medida1 = Label(comboframe5, text='m³/h', width=4, bg='white', font=my_font)
+    # medida1.pack(side='left')
 
     escojer1_btn = Button(groupingresa2, text='Calcular', width=15, command=calcular_datos, font=my_fonts)
     # escojer1_btn.pack(side='top', anchor='center', pady=10)
-    escojer1_btn.pack(side='top',  pady=10, padx=10)
+    escojer1_btn.pack(side='left',  pady=10, padx=10)
     # escojer1_btn["state"] = "disabled"
 
     grabar_btn = Button(groupingresa2, text='Grabar', width=15, command=grabar_rend, font=my_fonts)
-    grabar_btn.pack(pady=10, padx=10)
+    grabar_btn.pack(side='left', pady=10, padx=10)
 
     actualizar_btn = Button(groupingresa2, text='Actualizar', width=15, command=actualizar_datos, font=my_fonts)
-    actualizar_btn.pack(side='bottom',  pady=10, padx=10)
+    actualizar_btn.pack(side='right',  pady=10, padx=10)
 
     # selwin.protocol("WM_DELETE_WINDOW", on_closingselwin)
     selex_label.config(bg='white')
@@ -1185,7 +1275,7 @@ def inicio():
     # imagendeinicio.pack()
     ocultar_nuevo()
     ocultar_registros()
-    ocultar_ayuda()
+    # ocultar_ayuda()
     ocultar_formulas()
     ocultar_comparar()
     inicio_frame.pack()
@@ -1199,7 +1289,7 @@ def ocultar_inicio():
 def nuevo():
     ocultar_inicio()
     ocultar_registros()
-    ocultar_ayuda()
+    # ocultar_ayuda()
     ocultar_formulas()
     ocultar_comparar()
     nuevo_frame.pack()
@@ -1213,7 +1303,7 @@ def registros():
     # scrollbar.pack(side='right', fill='y')
     ocultar_inicio()
     ocultar_nuevo()
-    ocultar_ayuda()
+    # ocultar_ayuda()
     ocultar_formulas()
     ocultar_comparar()
     registros_frame.pack()
@@ -1234,7 +1324,7 @@ def formulas():
     ocultar_inicio()
     ocultar_nuevo()
     ocultar_registros()
-    ocultar_ayuda()
+    # ocultar_ayuda()
     ocultar_comparar()
     print("Formulas")
     formulas_frame.pack()
@@ -1243,18 +1333,18 @@ def formulas():
 def ocultar_formulas():
     formulas_frame.pack_forget()
 
-def ayuda():
-    print("Ayuda")
-    ocultar_inicio()
-    ocultar_nuevo()
-    ocultar_registros()
-    ocultar_formulas()
-    ocultar_comparar()
-    ayuda_frame.pack()
-    comparar_btn.pack_forget()
+# def ayuda():
+#     print("Ayuda")
+#     ocultar_inicio()
+#     ocultar_nuevo()
+#     ocultar_registros()
+#     ocultar_formulas()
+#     ocultar_comparar()
+#     ayuda_frame.pack()
+#     comparar_btn.pack_forget()
 
-def ocultar_ayuda():
-    ayuda_frame.pack_forget()
+# def ocultar_ayuda():
+#     ayuda_frame.pack_forget()
     
 def comparar():
     print("Comparar")
@@ -1295,20 +1385,20 @@ def on_select(event):
 tree.bind('<<TreeviewSelect>>', on_select)
 
 # iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
-eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts, bg='white')
-editar_btn = Button(table_frame_buttons, text='Editar', width=7, command=editar_id, font=my_fonts, bg='white')
-comparar_btn = Button(table_frame_buttons, text='Comparar', width=7, command=comparar_id, font=my_fonts, bg='white')
+eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts, bg='#FFEF9F')
+editar_btn = Button(table_frame_buttons, text='Editar', width=7, command=editar_id, font=my_fonts, bg='#FFEF9F')
+comparar_btn = Button(table_frame_buttons, text='Comparar', width=7, command=comparar_id, font=my_fonts, bg='#FFEF9F')
 # dato_eliminar_text = StringVar(table_frame_buttons, '', 'Datoaeliminar')
 # dato_eliminar_entry = Entry(table_frame_buttons, textvariable=dato_eliminar_text, width=5, fon=my_font)
 
-boton_pdf = Button(ayuda_frame, text='Guia de usuario', command=abrir_pdf, font=my_fonts)
-boton_pdf.pack(padx=20, pady=20)
+# boton_pdf = Button(ayuda_frame, text='Guia de usuario', command=abrir_pdf, font=my_fonts)
+# boton_pdf.pack(padx=20, pady=20)
 
 inicio_btn = Button(table_frame_buttons, text='Inicio', width=7, command=inicio, font=my_fonts, bg='white')
 nuevo_btn = Button(table_frame_buttons, text='Nuevo', width=7, command=nuevo, font=my_fonts, bg='white')
 registros_btn = Button(table_frame_buttons, text='Registros', width=7, command=registros, font=my_fonts, bg='white')
 formulas_btn = Button(table_frame_buttons, text='Formulas', width=7, command=formulas, font=my_fonts, bg='white')
-ayuda_btn = Button(table_frame_buttons, text='Ayuda', width=7, command=ayuda, font=my_fonts, bg='white')
+ayuda_btn = Button(table_frame_buttons, text='Ayuda', width=7, command=abrir_pdf, font=my_fonts, bg='white')
 
 # iniciar_btn.pack(anchor='n', side='left', padx=5, pady=5)
 
