@@ -679,9 +679,9 @@ def comparar_id():
         # rendimiento_label3.pack(side='left')
 
         # Crear los labels para los nombres de los datos
-        nombres_datos = ['id', 'excavadora', 'cuchara', 'material', 'eactual', 'econvertido', 'capacidad', 'rendimiento']
+        nombres_datos = ['Id:', 'Excavadora:', 'Cuchara:', 'Material:', 'Estado actual:', 'Estado convertido:', 'Capacidad', 'Rendimiento:']
         for i, nombre in enumerate(nombres_datos):
-            nombre_label = Label(comparar_frame, text=nombre, font=my_fontb, bg='white', relief='solid', borderwidth=1)
+            nombre_label = Label(comparar_frame, text=nombre, font=my_fontb, bg='white', borderwidth=1)
             nombre_label.grid(row=i, column=0, padx=5, pady=5, sticky='w')
 
         # Datos del primer grupo
@@ -699,43 +699,43 @@ def comparar_id():
         imagemaqr2 = imagemaq2.resize((150,150))
         photoimagemaq2 = ImageTk.PhotoImage(imagemaqr2)
 
-        dato1_label = Label(comparar_frame, text=ideditar1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_label = Label(comparar_frame, text=ideditar1, font=my_font, bg='white', borderwidth=1)
         dato1_label.grid(row=0, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe2 = Label(comparar_frame, text=excavadora1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe2 = Label(comparar_frame, text=excavadora1, font=my_font, bg='white', borderwidth=1)
         dato1_labe2.grid(row=1, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe3 = Label(comparar_frame, text=cuchara1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe3 = Label(comparar_frame, text=cuchara1, font=my_font, bg='white', borderwidth=1)
         dato1_labe3.grid(row=2, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe4 = Label(comparar_frame, text=material1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe4 = Label(comparar_frame, text=material1, font=my_font, bg='white', borderwidth=1)
         dato1_labe4.grid(row=3, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe5 = Label(comparar_frame, text=eactual1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe5 = Label(comparar_frame, text=eactual1, font=my_font, bg='white', borderwidth=1)
         dato1_labe5.grid(row=4, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe6 = Label(comparar_frame, text=econvertido1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe6 = Label(comparar_frame, text=econvertido1, font=my_font, bg='white', borderwidth=1)
         dato1_labe6.grid(row=5, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe7 = Label(comparar_frame, text=capacidad1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe7 = Label(comparar_frame, text=capacidad1, font=my_font, bg='white', borderwidth=1)
         dato1_labe7.grid(row=6, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe8 = Label(comparar_frame, text=rendimiento1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe8 = Label(comparar_frame, text=rendimiento1, font=my_font, bg='white', borderwidth=1)
         dato1_labe8.grid(row=7, column=1, padx=5, pady=5, sticky='w')
-        dato1_labe9 = Label(comparar_frame, image=photoimagemaq1, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato1_labe9 = Label(comparar_frame, image=photoimagemaq1, font=my_font, bg='white', borderwidth=1)
         dato1_labe9.grid(row=8, column=1, padx=5, pady=5, sticky='w')
         dato1_labe9.image = photoimagemaq1
 
-        dato2_label = Label(comparar_frame, text=ideditar2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_label = Label(comparar_frame, text=ideditar2, font=my_font, bg='white', borderwidth=1)
         dato2_label.grid(row=0, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe2 = Label(comparar_frame, text=excavadora2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe2 = Label(comparar_frame, text=excavadora2, font=my_font, bg='white', borderwidth=1)
         dato2_labe2.grid(row=1, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe3 = Label(comparar_frame, text=cuchara2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe3 = Label(comparar_frame, text=cuchara2, font=my_font, bg='white', borderwidth=1)
         dato2_labe3.grid(row=2, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe4 = Label(comparar_frame, text=material2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe4 = Label(comparar_frame, text=material2, font=my_font, bg='white', borderwidth=1)
         dato2_labe4.grid(row=3, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe5 = Label(comparar_frame, text=eactual2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe5 = Label(comparar_frame, text=eactual2, font=my_font, bg='white', borderwidth=1)
         dato2_labe5.grid(row=4, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe6 = Label(comparar_frame, text=econvertido2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe6 = Label(comparar_frame, text=econvertido2, font=my_font, bg='white', borderwidth=1)
         dato2_labe6.grid(row=5, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe7 = Label(comparar_frame, text=capacidad2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe7 = Label(comparar_frame, text=capacidad2, font=my_font, bg='white', borderwidth=1)
         dato2_labe7.grid(row=6, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe8 = Label(comparar_frame, text=rendimiento2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe8 = Label(comparar_frame, text=rendimiento2, font=my_font, bg='white', borderwidth=1)
         dato2_labe8.grid(row=7, column=2, padx=5, pady=5, sticky='w')
-        dato2_labe9 = Label(comparar_frame, image=photoimagemaq2, font=my_font, bg='white', relief='groove', borderwidth=1)
+        dato2_labe9 = Label(comparar_frame, image=photoimagemaq2, font=my_font, bg='white', borderwidth=1)
         dato2_labe9.grid(row=8, column=2, padx=5, pady=5, sticky='w')
         dato2_labe9.image = photoimagemaq2
 
