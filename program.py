@@ -51,6 +51,9 @@ global flag_mostrar_detalles
 flag_mostrar_detalles = 0
 global flag_eliminar
 flag_eliminar = 0
+
+global flag_editar
+flag_editar = 0
 global rendimiento
 print(thisid)
 
@@ -429,6 +432,7 @@ def eliminar_id():
     #     new_populate_list()
 
 def editar_id():
+    global flag_editar
     global ideditar
     selection = tree.selection()
     ideditar = tree.item(selection)['values'][0]
@@ -473,27 +477,14 @@ def editar_id():
     ingresardat_entry.delete('0','end')
     ingresardat_entry.insert(0, capacidad)
 
+    if flag_editar == 0:
+        actualizar_btn = Button(groupingresa2, text='Actualizar', width=15, command=actualizar_datos, font=my_fonts)
+        actualizar_btn.pack(side='right',  pady=10, padx=10)
+    flag_editar = 1
+
     nuevo()
 
 def comparar_id():
-
-    global textvariable11
-    global textvariable12
-    global textvariable21
-    global textvariable22
-    global textvariable31
-    global textvariable32
-    global textvariable41
-    global textvariable42
-    global textvariable51
-    global textvariable52
-    global textvariable61
-    global textvariable62
-    global textvariable71
-    global textvariable72
-    global textvariable81
-    global textvariable82
-
     selection = tree.selection()
     if len(selection) == 2:
         ideditar1 = tree.item(selection[0])['values'][0]
@@ -755,6 +746,29 @@ def configurar_imagen():
     # imagendeinicio.pack()
     # imagendeinicio.pack_configure(side='top', padx=5, pady=5, anchor='nw', expand=False)
 
+
+def actualizar_datos():
+    global ideditar
+    # db.update(id, excavadora, cuchara, material, eactual, econvertido, capacidad, rendimiento)
+
+    if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
+        messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
+        return
+    elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
+        messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.51 y 1.34')
+        return
+    elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
+        messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.92 y 1.4')
+        return
+    else:
+        try:
+            db.update(ideditar, myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+            actualizar_lista()
+            print('Datos actualizados')
+        except ValueError:
+            messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
+
+
 def configurar_nuevo():
     # mainwin.withdraw()
     # selwin=Toplevel()
@@ -941,10 +955,6 @@ def configurar_nuevo():
                 print('Datos actualizados')
             except ValueError:
                 messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
-
-        
-        
-        
 
     # def on_closingselwin():
     #     global flag_ingresar_excavadora
@@ -1316,8 +1326,8 @@ def configurar_nuevo():
     grabar_btn = Button(groupingresa2, text='Grabar', width=15, command=grabar_rend, font=my_fonts)
     grabar_btn.pack(side='left', pady=10, padx=10)
 
-    actualizar_btn = Button(groupingresa2, text='Actualizar', width=15, command=actualizar_datos, font=my_fonts)
-    actualizar_btn.pack(side='right',  pady=10, padx=10)
+    # actualizar_btn = Button(groupingresa2, text='Actualizar', width=15, command=actualizar_datos, font=my_fonts)
+    # actualizar_btn.pack(side='right',  pady=10, padx=10)
 
     # selwin.protocol("WM_DELETE_WINDOW", on_closingselwin)
     selex_label.config(bg='white')
@@ -1453,7 +1463,7 @@ comparar_btn = Button(table_frame_buttons, text='Comparar', width=7, command=com
 
 inicio_btn = Button(table_frame_buttons, text='Inicio', width=7, command=inicio, font=my_fonts, bg='white')
 nuevo_btn = Button(table_frame_buttons, text='Nuevo', width=7, command=nuevo, font=my_fonts, bg='white')
-registros_btn = Button(table_frame_buttons, text='Registros', width=7, command=registros, font=my_fonts, bg='white')
+registros_btn = Button(table_frame_buttons, text='Respaldos', width=7, command=registros, font=my_fonts, bg='white')
 formulas_btn = Button(table_frame_buttons, text='Formulas', width=7, command=formulas, font=my_fonts, bg='white')
 ayuda_btn = Button(table_frame_buttons, text='Ayuda', width=7, command=abrir_pdf, font=my_fonts, bg='white')
 
