@@ -39,10 +39,17 @@ thisid = 0
 
 for row in db.fetch():
     thisid = thisid + 1
+
+# variable para capacidad cuchara
 global capacidadcuchara
 capacidadcuchara = 0.0
 global cuchara
 cuchara = ""
+
+# variable para ciclos promedio
+global promed
+promed = 0
+
 global flag1
 flag1 = 1
 global flag_ingresar_excavadora
@@ -115,14 +122,14 @@ scrollbar.pack(side='right', fill='y')
 
 # creacion de la imagen de inicio
 imageinicio = Image.open('imageninicio.jpg')
-imageinicioqr = imageinicio.resize((450,350))
+imageinicioqr = imageinicio.resize((450,450))
 photoimageq = ImageTk.PhotoImage(imageinicioqr)
 imagendeinicio = Label(inicio_frame, bg='white', image=photoimageq)
 imagendeinicio.pack()
 
 # creacion de la imagen de Formulas
 imageformulas = Image.open('imagenformulas.jpg')
-imageformulasqr = imageformulas.resize((450,350))
+imageformulasqr = imageformulas.resize((1209,700))
 photoimageqformulas = ImageTk.PhotoImage(imageformulasqr)
 imagendeformulas = Label(formulas_frame, bg='white', image=photoimageqformulas)
 imagendeformulas.pack()
@@ -170,47 +177,6 @@ imagenexca = Label(groupcombotop, bg='white')
 
 
 # todo sobre comparar
-# frame1 = Frame(comparar_frame, background='white')
-# frame2 = Frame(comparar_frame, background='white')
-# frame3 = Frame(comparar_frame, background='white')
-# frame4 = Frame(comparar_frame, background='white')
-# frame5 = Frame(comparar_frame, background='white')
-# frame6 = Frame(comparar_frame, background='white')
-# frame7 = Frame(comparar_frame, background='white')
-# frame8 = Frame(comparar_frame, background='white')
-
-# id_label1 = Label(frame1, text='ID:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer1 = Label(frame1, width=15, bg='white')
-# id_label2 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# id_label3 = Label(frame1, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# excavadora_label1 = Label(frame2, text='Excavadora:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer2 = Label(frame2, width=6, bg='white')
-# excavadora_label2 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# excavadora_label3 = Label(frame2, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# cuchara_label1 = Label(frame3, text='Cuchara:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer3 = Label(frame3, width=9, bg='white')
-# cuchara_label2 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# cuchara_label3 = Label(frame3, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# material_label1 = Label(frame4, text='Material:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer4 = Label(frame4, width=10, bg='white')
-# material_label2 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# material_label3 = Label(frame4, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# eactual_label1 = Label(frame5, text='Estado actual:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer5 = Label(frame5, width=4, bg='white')
-# eactual_label2 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# eactual_label3 = Label(frame5, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# econvertido_label1 = Label(frame6, text='Estado convertido:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer6 = Label(frame6, width=0, bg='white')
-# econvertido_label2 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# econvertido_label3 = Label(frame6, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# capacidad_label1 = Label(frame7, text='Capacidad:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer7 = Label(frame7, width=6, bg='white')
-# capacidad_label2 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# capacidad_label3 = Label(frame7, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# rendimiento_label1 = Label(frame8, text='Rendimiento:', font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# spacer8 = Label(frame8, width=5, bg='white')
-# rendimiento_label2 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
-# rendimiento_label3 = Label(frame8, font=my_fontb, pady=10, padx=10, bg='white', relief="solid")
 
 def comboclick3(event):
     if myCombo3.get() == "Arena":
@@ -238,7 +204,6 @@ def comboclick3(event):
             "Compactado (4)",
         ]
     myCombo4.configure(value=estadooptions)
-
 
 def comboclick1(event):
         if myCombo1.get() == "Hyundai Robex 200LC-9SB":
@@ -275,6 +240,7 @@ def comboclick1(event):
         myCombo2.configure(value=cuchoptions)
     
 def comboclick2(event):
+        global capacidadcuchara
         if myCombo2.get() == "SAE APILADO N01":
             imagepal = Image.open('SAE_APILADO_N_01.jpg')
             imagepalr = imagepal.resize((150,150))
@@ -337,7 +303,6 @@ def comboclick2(event):
         global flag1
         flag1 = 0
     
-
 def small_populate_list():
 
     # Definir las columnas y los encabezados personalizados
@@ -496,6 +461,8 @@ def comparar_id():
         row2 = db.fetch_by_id(ideditar2)
         excavadora2, cuchara2, material2, eactual2, econvertido2, capacidad2, rendimiento2 = row2[1:]
 
+        rendimiento1 = round(float(rendimiento1), 2)
+        rendimiento2 = round(float(rendimiento2), 2)
         print('id1:',ideditar1)
         print('id1:',excavadora1)
         print('id1:',cuchara1)
@@ -746,29 +713,27 @@ def configurar_imagen():
     # imagendeinicio.pack()
     # imagendeinicio.pack_configure(side='top', padx=5, pady=5, anchor='nw', expand=False)
 
-
 def actualizar_datos():
     global ideditar
     # db.update(id, excavadora, cuchara, material, eactual, econvertido, capacidad, rendimiento)
-
-    if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
-        messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
-        return
-    elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
-        messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.51 y 1.34')
-        return
-    elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
-        messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.92 y 1.4')
-        return
-    else:
-        try:
-            db.update(ideditar, myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
-            actualizar_lista()
-            print('Datos actualizados')
-        except ValueError:
-            messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
-
-
+    global capacidadcuchara
+    try:
+        if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
+            messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
+            return
+        elif float(ingresardat_text.get()) <= 0 or float(ingresardat_text.get()) > float(capacidadcuchara):
+            messagebox.showerror('Fuera de rango',f'Porfavor ingrese un numero entre 0 y {str(capacidadcuchara)}')
+            return
+        else:
+            try:
+                db.update(ideditar, myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+                actualizar_lista()
+                print('Datos actualizados')
+            except ValueError:
+                messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
+    except ValueError:
+        messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
+            
 def configurar_nuevo():
     # mainwin.withdraw()
     # selwin=Toplevel()
@@ -783,56 +748,63 @@ def configurar_nuevo():
 
     def calcular_datos():
         global varfac
+        global promed
         medida1.pack(side='left')
 
         def calcular_rend():
             global rendimiento
             global flag_ingresar_excavadora
-
-            if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
-                messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
-                return
-            elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
-                messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.51 y 1.34')
-                return
-            elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
-                messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.92 y 1.4')
-                return
-            else:
-                try:
-                    print('calculo rendimiento')
-                    print(thisid)
-                    promed = (51.3 + 75.37 + 263.18 + 84.86 + 116.23) / 5.0
-                    rendimiento = (3600 * float(ingresardat_text.get()) * float(varfac) * float(0.7) * float(0.9)) / float(promed)
-                    visualizar_text.set(round(rendimiento, 2))
-                    # volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
-                    # sobreexcava = volumen*1.15
-                    # tiempodecarga = float(db.fetchtiempocarga(thisid))
-                    # numerocicloshora = 55.0/(tiempodecarga/60.0)
-                    # capacidadporhora = numerocicloshora*float(db.fetchcapacidadneta(thisid))
-                    # productividad = capacidadporhora
-                    # rendimiento = productividad*8.0
-                    # tiempoalquiler = sobreexcava/productividad
-                    # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
-                    # db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
-                    
-                    # db.insert(myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
-                    
-                    # volumen_text.set(round(volumen, 2))
-                    # sobreexcava_text.set(round(sobreexcava, 2))
-                    # tiempoalquiler_text.set(round(tiempoalquiler, 2))
-                    # numerocicloshora_text.set(round(numerocicloshora, 2))
-                    # productividad_text.set(round(productividad, 2))
-                    # rendimiento_text.set(round(rendimiento, 2))
-                    
-                    flag_ingresar_excavadora = 0
-                    global flag1
-                    flag1 = 1
-                    # small_populate_list()
-                    
-                except ValueError:
-                    flag_ingresar_excavadora = 1
-                    messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
+            global capacidadcuchara
+            
+            try:
+                if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
+                    messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
+                    return
+                elif float(ingresardat_text.get()) <= 0 or float(ingresardat_text.get()) > float(capacidadcuchara):
+                    messagebox.showerror('Fuera de rango',f'Porfavor ingrese un numero entre 0 y {str(capacidadcuchara)}')
+                    return
+                else:
+                    try:
+                        print('calculo rendimiento')
+                        print(thisid)
+                        if myCombo1.get() == "Hyundai Robex 200LC-9SB":
+                            promed = (207.96 + 304.3 + 263.18 + 188.11 + 131.79)/5.0
+                        elif myCombo1.get() == "Doosan DX225LCA":
+                            promed = (51.3 + 75.37 + 263.18 + 84.86 + 116.23) / 5.0
+                        # promed = (51.3 + 75.37 + 263.18 + 84.86 + 116.23) / 5.0
+                        print("Factor conversion:", varfac)
+                        print("Capacidad:", ingresardat_text.get())
+                        rendimiento = (3600.0 * float(ingresardat_text.get()) * float(varfac) * float(0.7) * float(0.9)) / float(promed)
+                        visualizar_text.set(round(rendimiento, 2))
+                        # volumen = float(alto_text.get()) * float(ancho_text.get()) * float(largo_text.get())
+                        # sobreexcava = volumen*1.15
+                        # tiempodecarga = float(db.fetchtiempocarga(thisid))
+                        # numerocicloshora = 55.0/(tiempodecarga/60.0)
+                        # capacidadporhora = numerocicloshora*float(db.fetchcapacidadneta(thisid))
+                        # productividad = capacidadporhora
+                        # rendimiento = productividad*8.0
+                        # tiempoalquiler = sobreexcava/productividad
+                        # alto, ancho, largo, volumen, sobreexcavacion, tiempoalquiler, numerocicloshora, productividad, rendimiento
+                        # db.insertarexcava(thisid, alto_text.get(), ancho_text.get(), largo_text.get(), volumen, sobreexcava, tiempoalquiler, numerocicloshora, productividad, rendimiento)
+                        
+                        # db.insert(myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
+                        
+                        # volumen_text.set(round(volumen, 2))
+                        # sobreexcava_text.set(round(sobreexcava, 2))
+                        # tiempoalquiler_text.set(round(tiempoalquiler, 2))
+                        # numerocicloshora_text.set(round(numerocicloshora, 2))
+                        # productividad_text.set(round(productividad, 2))
+                        # rendimiento_text.set(round(rendimiento, 2))
+                        
+                        flag_ingresar_excavadora = 0
+                        global flag1
+                        flag1 = 1
+                        # small_populate_list()
+                    except ValueError:
+                        flag_ingresar_excavadora = 1
+                        messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
+            except ValueError:
+                messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
 
         if myCombo4.get() == "Banco (1)" and myCombo5.get() == "Natural":
             # varfac = 1.00
@@ -934,27 +906,6 @@ def configurar_nuevo():
             return
 
         calcular_rend()
-
-    def actualizar_datos():
-        global ideditar
-        # db.update(id, excavadora, cuchara, material, eactual, econvertido, capacidad, rendimiento)
-    
-        if ingresardat_text.get() == '' or myCombo1 == '' or myCombo2 == '' or myCombo3 == '' or myCombo4 == '' or myCombo5 == '':
-            messagebox.showerror('Campos requeridos', 'Porfavor ingrese datos')
-            return
-        elif myCombo1.get() == "Hyundai Robex 200LC-9SB" and (float(ingresardat_text.get()) > 1.34 or float(ingresardat_text.get()) < 0.51):
-            messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.51 y 1.34')
-            return
-        elif myCombo1.get() == "Doosan DX225LCA" and (float(ingresardat_text.get()) > 1.4 or float(ingresardat_text.get()) < 0.92):
-            messagebox.showerror('Fuera de rango','Porfavor ingrese un numero entre 0.92 y 1.4')
-            return
-        else:
-            try:
-                db.update(ideditar, myCombo1.get(), myCombo2.get(), myCombo3.get(), myCombo4.get(), myCombo5.get(), ingresardat_text.get(), rendimiento)
-                actualizar_lista()
-                print('Datos actualizados')
-            except ValueError:
-                messagebox.showerror('No es un numero', 'Por favor ingrese un numero')
 
     # def on_closingselwin():
     #     global flag_ingresar_excavadora
@@ -1400,19 +1351,6 @@ def formulas():
 def ocultar_formulas():
     formulas_frame.pack_forget()
 
-# def ayuda():
-#     print("Ayuda")
-#     ocultar_inicio()
-#     ocultar_nuevo()
-#     ocultar_registros()
-#     ocultar_formulas()
-#     ocultar_comparar()
-#     ayuda_frame.pack()
-#     comparar_btn.pack_forget()
-
-# def ocultar_ayuda():
-#     ayuda_frame.pack_forget()
-    
 def comparar():
     print("Comparar")
     ocultar_inicio()
@@ -1446,29 +1384,18 @@ def on_select(event):
         id = tree.item(selection)['values'][0]
         print('id seleccionado:', id)
 
-
-
 # asociar eleiminar a tree
 tree.bind('<<TreeviewSelect>>', on_select)
 
-# iniciar_btn = Button(table_frame_buttons, text='Iniciar', width=6, command=escoger_excavadora, font=my_fonts)
 eliminar_btn = Button(table_frame_buttons, text='Eliminar', width=7, command=eliminar_id, font=my_fonts, bg='#FFEF9F')
 editar_btn = Button(table_frame_buttons, text='Editar', width=7, command=editar_id, font=my_fonts, bg='#FFEF9F')
 comparar_btn = Button(table_frame_buttons, text='Comparar', width=7, command=comparar_id, font=my_fonts, bg='#FFEF9F')
-# dato_eliminar_text = StringVar(table_frame_buttons, '', 'Datoaeliminar')
-# dato_eliminar_entry = Entry(table_frame_buttons, textvariable=dato_eliminar_text, width=5, fon=my_font)
-
-# boton_pdf = Button(ayuda_frame, text='Guia de usuario', command=abrir_pdf, font=my_fonts)
-# boton_pdf.pack(padx=20, pady=20)
 
 inicio_btn = Button(table_frame_buttons, text='Inicio', width=7, command=inicio, font=my_fonts, bg='white')
 nuevo_btn = Button(table_frame_buttons, text='Nuevo', width=7, command=nuevo, font=my_fonts, bg='white')
 registros_btn = Button(table_frame_buttons, text='Respaldos', width=7, command=registros, font=my_fonts, bg='white')
 formulas_btn = Button(table_frame_buttons, text='Formulas', width=7, command=formulas, font=my_fonts, bg='white')
 ayuda_btn = Button(table_frame_buttons, text='Ayuda', width=7, command=abrir_pdf, font=my_fonts, bg='white')
-
-# iniciar_btn.pack(anchor='n', side='left', padx=5, pady=5)
-
 
 inicio_btn.pack(anchor='n', side='left', padx=5, pady=5)
 nuevo_btn.pack(anchor='n', side='left', padx=5, pady=5)
@@ -1478,15 +1405,12 @@ ayuda_btn.pack(anchor='n', side='left', padx=5, pady=5)
 eliminar_btn.pack(anchor='n', side='left', padx=5, pady=5)
 editar_btn.pack(anchor='n', side='left', padx=5, pady=5)
 comparar_btn.pack(anchor='n', side='left', padx=5, pady=5)
-# dato_eliminar_entry.pack(anchor='n', side='left', padx=5, pady=5)
 eliminar_btn.pack_forget()
 editar_btn.pack_forget()
 comparar_btn.pack_forget()
-# dato_eliminar_entry.pack_forget()
 
 # configurar_imagen()
 configurar_nuevo()
 small_populate_list()
-# populate_list()
 
 mainwin.mainloop()
